@@ -47,11 +47,10 @@
       letter-spacing: 0.6px;
     }
 
-    .desc {
+    .desc, .about {
       font-size: 22px;
       font-weight: 600;
       max-width: 850px;
-      color: #2c3e50;
       transition: opacity 0.6s ease;
       margin-bottom: 40px;
     }
@@ -61,11 +60,14 @@
       background: #f0f4f8;
       padding: 25px;
       border-radius: 12px;
-      margin-bottom: 45px;
       color: #34495e;
       max-width: 800px;
       font-weight: 500;
-      transition: opacity 0.6s ease;
+    }
+
+    .ltr {
+      direction: ltr;
+      text-align: left;
     }
 
     .sections {
@@ -153,13 +155,26 @@
 
     function rotateText() {
       const lang = langs[index];
-      document.getElementById("mainText").textContent = mainTexts[lang];
-      document.getElementById("aboutText").textContent = aboutTexts[lang];
+      const mainEl = document.getElementById("mainText");
+      const aboutEl = document.getElementById("aboutText");
+
+      mainEl.textContent = mainTexts[lang];
+      aboutEl.textContent = aboutTexts[lang];
+
+      // Adjust direction
+      if (lang === "ar" || lang === "ur") {
+        mainEl.classList.remove("ltr");
+        aboutEl.classList.remove("ltr");
+      } else {
+        mainEl.classList.add("ltr");
+        aboutEl.classList.add("ltr");
+      }
+
       index = (index + 1) % langs.length;
     }
 
-    rotateText(); // Show initial
-    setInterval(rotateText, 6000); // Change every 6s
+    rotateText(); // initial
+    setInterval(rotateText, 9000); // every 9 seconds
   </script>
 </body>
 </html>
