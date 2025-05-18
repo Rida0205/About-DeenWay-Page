@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 40px;
+      background-color: #ffffff;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+
+    .container {
+      width: 100%;
+      padding: 30px 50px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .logo {
+      font-size: 34px;
+      font-weight: bold;
+      letter-spacing: 0px;
+      background: linear-gradient(90deg, #1d4ed8, #0ea5e9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .desc {
+      font-size: 18px;
+      margin-top: 15px;
+      line-height: 1.6;
+      min-height: 100px;
+      transition: opacity 0.5s ease;
+    }
+
+    @media (max-width: 600px) {
+      body { padding: 20px; }
+      .logo { font-size: 26px; }
+      .desc { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="logo">DEENWAY</div>
+    <div class="tagline">Guiding hearts to the truth</div>
+    <div class="desc" id="siteDescription"></div>
+  </div>
+
+  <script>
+    const messages = [
+      {
+        lang: "ar",
+        text: "موقع ديني هدفه الأسمى إيصال المعلومة كما ينبغي لها أن تصل، وتطبيق وصية المصطفى ﷺ: \"بلّغوا عني ولو آية\". نسعى للخير، وندل عليه."
+      },
+      {
+        lang: "fr",
+        text: "Un site religieux dont le but suprême est de transmettre l'information comme elle doit l'être, en appliquant la recommandation du Prophète ﷺ : \"Transmettez de moi ne serait-ce qu’un verset.\" Nous recherchons le bien et y guidons."
+      },
+      {
+        lang: "en",
+        text: "A religious website whose ultimate goal is to deliver knowledge as it should be, applying the command of the Prophet ﷺ: \"Convey from me even one verse.\" We strive for goodness and guide to it."
+      },
+      {
+        lang: "es",
+        text: "Un sitio religioso cuyo objetivo supremo es transmitir el conocimiento como debe ser, aplicando la enseñanza del Profeta ﷺ: \"Transmitid de mí aunque sea un verso.\" Buscamos el bien y guiamos hacia él."
+      },
+      {
+        lang: "de",
+        text: "Eine religiöse Website mit dem höchsten Ziel, Wissen so zu vermitteln, wie es sein soll, gemäß dem Rat des Propheten ﷺ: \"Übermittelt von mir auch nur einen Vers.\" Wir streben nach dem Guten und zeigen den Weg dorthin."
+      },
+      {
+        lang: "tr",
+        text: "Bilginin doğru şekilde iletilmesini amaçlayan dini bir siteyiz. Peygamber Efendimiz ﷺ’in emrini uyguluyoruz: \"Benden bir ayet bile olsa iletin.\" Hayra ulaşmak ve ulaştırmak için çabalıyoruz."
+      },
+      {
+        lang: "id",
+        text: "Situs keagamaan yang bertujuan menyampaikan ilmu sebagaimana mestinya, menerapkan wasiat Nabi ﷺ: \"Sampaikan dariku walau hanya satu ayat.\" Kami berupaya untuk kebaikan dan membimbing ke arahnya."
+      },
+      {
+        lang: "ur",
+        text: "ایک دینی ویب سائٹ جس کا اعلیٰ مقصد علم کو ویسے ہی پہنچانا ہے جیسے پہنچنا چاہیے، اور نبی ﷺ کی وصیت پر عمل کرنا: \"میری طرف سے ایک آیت بھی پہنچاؤ۔\" ہم بھلائی کی کوشش کرتے ہیں اور اس کی طرف رہنمائی کرتے ہیں۔"
+      }
+    ];
+
+    let index = 0;
+
+    function updateMessage() {
+      const message = messages[index];
+      const desc = document.getElementById("siteDescription");
+
+      document.documentElement.lang = message.lang;
+      const rtlLangs = ["ar", "ur"];
+      document.body.style.direction = rtlLangs.includes(message.lang) ? "rtl" : "ltr";
+      document.body.style.textAlign = rtlLangs.includes(message.lang) ? "right" : "left";
+
+      desc.style.opacity = 0;
+      setTimeout(() => {
+        desc.textContent = message.text;
+        desc.style.opacity = 1;
+      }, 300);
+
+      index = (index + 1) % messages.length;
+    }
+
+    updateMessage();
+    setInterval(updateMessage, 6000);
+  </script>
+
+</body>
+</html>
