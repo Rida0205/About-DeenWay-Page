@@ -1,87 +1,78 @@
-# تحديث التصميم:
-# - توسيط الاسم والوصف (حتى في RTL)
-# - جعل اسم الموقع أكثر أناقة
-# - إضافة وصف ثابت أسفل الهيدر (من نحن)
-# - عرض اللغات كأزرار
-# - لمسة تصميمية أجمل
-
-html_updated = """
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <title>Deenway | من نحن</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 40px 20px;
-      background-color: #ffffff;
+      background: #fff;
       color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
       text-align: center;
-      transition: all 0.3s ease;
     }
-
     .logo {
-      font-size: 42px;
+      font-size: 40px;
       font-weight: 900;
-      background: linear-gradient(to right, #0ea5e9, #1d4ed8);
+      background: linear-gradient(to right, #0284c7, #1e3a8a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 6px;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
     }
-
     .tagline {
-      font-size: 16px;
-      color: #777;
-      margin-bottom: 20px;
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 30px;
     }
-
-    .desc, .about {
-      font-size: 18px;
-      line-height: 1.7;
-      margin: 20px auto;
+    .lang-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .lang-buttons button {
+      padding: 8px 16px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background: #f9f9f9;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .lang-buttons button:hover {
+      background: #e2e8f0;
+    }
+    .desc {
       max-width: 800px;
-      transition: opacity 0.5s ease;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
     }
-
     .about {
+      font-size: 17px;
       color: #444;
       border-top: 1px solid #eee;
       padding-top: 20px;
-    }
-
-    .lang-buttons {
-      margin: 30px 0 10px;
-    }
-
-    .lang-buttons button {
-      margin: 5px;
-      padding: 10px 16px;
-      font-size: 14px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      background-color: #f0f0f0;
-      transition: background 0.2s ease;
-    }
-
-    .lang-buttons button:hover {
-      background-color: #e2e8f0;
-    }
-
-    @media (max-width: 600px) {
-      .logo { font-size: 30px; }
-      .desc, .about { font-size: 16px; padding: 0 10px; }
+      max-width: 700px;
     }
   </style>
 </head>
 <body>
-
   <div class="logo">DEENWAY</div>
   <div class="tagline">Guiding hearts to the truth</div>
-  
+
   <div class="lang-buttons">
     <button onclick="setLang('ar')">العربية</button>
     <button onclick="setLang('fr')">Français</button>
@@ -102,38 +93,24 @@ html_updated = """
 
   <script>
     const messages = {
-      ar: "موقع ديني هدفه الأسمى إيصال المعلومة كما ينبغي لها أن تصل، وتطبيق وصية المصطفى ﷺ: \\"بلّغوا عني ولو آية\\". نسعى للخير، وندل عليه.",
-      fr: "Un site religieux dont le but suprême est de transmettre l'information comme elle doit l'être, en appliquant la recommandation du Prophète ﷺ : \\"Transmettez de moi ne serait-ce qu’un verset.\\" Nous recherchons le bien et y guidons.",
-      en: "A religious website whose ultimate goal is to deliver knowledge as it should be, applying the command of the Prophet ﷺ: \\"Convey from me even one verse.\\" We strive for goodness and guide to it.",
-      es: "Un sitio religioso cuyo objetivo supremo es transmitir el conocimiento como debe ser, aplicando la enseñanza del Profeta ﷺ: \\"Transmitid de mí aunque sea un verso.\\" Buscamos el bien y guiamos hacia él.",
-      de: "Eine religiöse Website mit dem höchsten Ziel, Wissen so zu vermitteln, wie es sein soll, gemäß dem Rat des Propheten ﷺ: \\"Übermittelt von mir auch nur einen Vers.\\" Wir streben nach dem Guten und zeigen den Weg dorthin.",
-      tr: "Bilginin doğru şekilde iletilmesini amaçlayan dini bir siteyiz. Peygamber Efendimiz ﷺ’in emrini uyguluyoruz: \\"Benden bir ayet bile olsa iletin.\\" Hayra ulaşmak ve ulaştırmak için çabalıyoruz.",
-      id: "Situs keagamaan yang bertujuan menyampaikan ilmu sebagaimana mestinya, menerapkan wasiat Nabi ﷺ: \\"Sampaikan dariku walau hanya satu ayat.\\" Kami berupaya untuk kebaikan dan membimbing ke arahnya.",
-      ur: "ایک دینی ویب سائٹ جس کا اعلیٰ مقصد علم کو ویسے ہی پہنچانا ہے جیسے پہنچنا چاہیے، اور نبی ﷺ کی وصیت پر عمل کرنا: \\"میری طرف سے ایک آیت بھی پہنچاؤ۔\\" ہم بھلائی کی کوشش کرتے ہیں اور اس کی طرف رہنمائی کرتے ہیں۔"
+      ar: "موقع ديني هدفه الأسمى إيصال المعلومة كما ينبغي لها أن تصل، وتطبيق وصية المصطفى ﷺ: \\\"بلّغوا عني ولو آية\\\". نسعى للخير، وندل عليه.",
+      fr: "Un site religieux dont le but suprême est de transmettre l'information comme elle doit l'être, en appliquant la recommandation du Prophète ﷺ : \\\"Transmettez de moi ne serait-ce qu’un verset.\\\" Nous recherchons le bien et y guidons.",
+      en: "A religious website whose ultimate goal is to deliver knowledge as it should be, applying the command of the Prophet ﷺ: \\\"Convey from me even one verse.\\\" We strive for goodness and guide to it.",
+      es: "Un sitio religioso cuyo objetivo supremo es transmitir el conocimiento como debe ser, aplicando la enseñanza del Profeta ﷺ: \\\"Transmitid de mí aunque sea un verso.\\\" Buscamos el bien y guiamos hacia él.",
+      de: "Eine religiöse Website mit dem höchsten Ziel, Wissen so zu vermitteln, wie es sein soll, gemäß dem Rat des Propheten ﷺ: \\\"Übermittelt von mir auch nur einen Vers.\\\" Wir streben nach dem Guten und zeigen den Weg dorthin.",
+      tr: "Bilginin doğru şekilde iletilmesini amaçlayan dini bir siteyiz. Peygamber Efendimiz ﷺ’in emrini uyguluyoruz: \\\"Benden bir ayet bile olsa iletin.\\\" Hayra ulaşmak ve ulaştırmak için çabalıyoruz.",
+      id: "Situs keagamaan yang bertujuan menyampaikan ilmu sebagaimana mestinya, menerapkan wasiat Nabi ﷺ: \\\"Sampaikan dariku walau hanya satu ayat.\\\" Kami berupaya untuk kebaikan dan membimbing ke arahnya.",
+      ur: "ایک دینی ویب سائٹ جس کا اعلیٰ مقصد علم کو ویسے ہی پہنچانا ہے جیسے پہنچنا چاہیے، اور نبی ﷺ کی وصیت پر عمل کرنا: \\\"میری طرف سے ایک آیت بھی پہنچاؤ۔\\\" ہم بھلائی کی کوشش کرتے ہیں اور اس کی طرف رہنمائی کرتے ہیں۔"
     };
 
     function setLang(lang) {
-      const desc = document.getElementById("siteDescription");
       const rtlLangs = ["ar", "ur"];
       document.documentElement.lang = lang;
-      document.body.style.direction = rtlLangs.includes(lang) ? "rtl" : "ltr";
-      desc.style.opacity = 0;
-      setTimeout(() => {
-        desc.textContent = messages[lang];
-        desc.style.opacity = 1;
-      }, 200);
+      document.documentElement.dir = rtlLangs.includes(lang) ? "rtl" : "ltr";
+      document.getElementById("siteDescription").textContent = messages[lang];
     }
 
     setLang('ar');
   </script>
-
 </body>
 </html>
-"""
-
-# حفظ الملف المحدث
-updated_file_path = "/mnt/data/index.html"
-with open(updated_file_path, "w", encoding="utf-8") as f:
-    f.write(html_updated)
-
-updated_file_path
