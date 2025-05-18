@@ -61,7 +61,24 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       transition: all 0.4s ease;
       margin-bottom: 40px;
-      min-height: 120px;
+      min-height: 180px;
+      white-space: pre-line;
+      text-align: inherit;
+    }
+
+    .bold {
+      font-weight: bold;
+      color: #1d3557;
+    }
+
+    .browse-anyway {
+      font-size: 19px;
+      margin-bottom: 15px;
+      color: #2980b9;
+      font-weight: 700;
+      min-height: 29px;
+      transition: opacity 0.6s ease;
+      letter-spacing: 0.3px;
     }
 
     .ltr {
@@ -75,7 +92,6 @@
       width: 220px;
     }
 
-    /* تصميم حديث لزر الاختيار */
     select {
       -webkit-appearance: none;
       -moz-appearance: none;
@@ -98,7 +114,6 @@
       background-color: #1d6fa5;
     }
 
-    /* سهم مخصص */
     .language-select::after {
       content: "▼";
       position: absolute;
@@ -153,6 +168,9 @@
         width: 100%;
         max-width: 300px;
       }
+      .browse-anyway {
+        font-size: 17px;
+      }
     }
   </style>
 </head>
@@ -175,6 +193,8 @@
     </div>
 
     <div class="about" id="aboutText"></div>
+
+    <div class="browse-anyway" id="browsePhrase"></div>
 
     <div class="sections">
       <a href="#">العربية</a>
@@ -200,28 +220,71 @@
       ur: "دلوں کی رہنمائی حق کی طرف"
     };
 
+    // وصف مطول ومؤثر مع عبارات غليظة وفواصل أسطر
     const aboutTexts = {
-      ar: "Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية. من أجل ذلك، نوفر محتوانا بلغات متعددة لنجعل النور متاحًا لكل من يبحث عنه، أيًا كانت لغته أو خلفيته.",
-      fr: "Deenway est un projet de prêche visant à transmettre la guidance par le langage des cœurs et des esprits. Nous croyons que la lumière ne connaît ni frontières géographiques ni linguistiques.",
-      en: "Deenway is a da'wah project aiming to deliver guidance in the language of hearts and minds. We believe that guidance knows no geographical or linguistic boundaries.",
-      es: "Deenway es un proyecto de da‘wah cuyo objetivo es transmitir la guía en el idioma de los corazones y las mentes. Creemos que la guía no conoce fronteras geográficas ni lingüísticas.",
-      de: "Deenway ist ein Da'wah-Projekt, das darauf abzielt, die Führung in der Sprache der Herzen und des Verstandes zu vermitteln. Wir glauben, dass die Wahrheit keine Grenzen kennt.",
-      tr: "Deenway, kalplerin ve akılların diliyle rehberliği ulaştırmayı amaçlayan bir davet projesidir. Hidayetin coğrafi veya dilsel sınırları tanımadığına inanıyoruz.",
-      id: "Deenway adalah proyek dakwah yang bertujuan menyampaikan petunjuk dengan bahasa hati dan akal. Kami percaya bahwa hidayah tidak mengenal batas geografis maupun bahasa.",
-      ur: "Deenway ایک دعوتی منصوبہ ہے جو دلوں اور عقل کی زبان میں ہدایت پہنچانے کا عزم رکھتا ہے۔ ہم سمجھتے ہیں کہ ہدایت کی کوئی جغرافیائی یا لسانی سرحد نہیں۔"
+      ar: "مرحبًا بك في <span class='bold'>Deenway</span>.\n\n"
+        + "مشروعنا ليس مجرد منصة، بل هو <span class='bold'>رسالة أمل ونور</span> تعبر الحدود. نطمح أن نوصل الهداية لكل قلب يبحث عن الحق، بلغته وثقافته.\n\n"
+        + "نؤمن أن <span class='bold'>النور لا يُحجب بل يُهْدَى</span>، وأن لكل إنسان الحق في أن يعرف طريق الحق مهما اختلفت لغته أو خلفيته.\n\n"
+        + "نحن هنا لنُشْعِل شمعة في دربك، ونرافقك بخطى ثابتة نحو الحكمة والمعرفة، ونفتح لك أبواب الرحمة والخير.\n\n"
+        + "<span class='bold'>Deenway</span>... حيث تتلاقى القلوب، وتلتقي العقول، ويجد كل باحث عن النور سبيله.",
+      fr: "Bienvenue sur <span class='bold'>Deenway</span>.\n\n"
+        + "Notre projet est bien plus qu'une simple plateforme ; c'est un <span class='bold'>message d'espoir et de lumière</span> qui traverse les frontières.\n\n"
+        + "Nous croyons que <span class='bold'>la lumière doit être partagée</span> et que chaque cœur mérite d'être guidé, peu importe la langue ou la culture.\n\n"
+        + "Nous sommes là pour illuminer votre chemin, vous accompagner pas à pas vers la sagesse, ouvrir les portes de la miséricorde et du bien.\n\n"
+        + "<span class='bold'>Deenway</span>... là où les cœurs se rencontrent et où chacun peut trouver la voie de la lumière.",
+      en: "Welcome to <span class='bold'>Deenway</span>.\n\n"
+        + "Our project is more than just a platform—it's a <span class='bold'>message of hope and light</span> that transcends all boundaries.\n\n"
+        + "We believe that <span class='bold'>guidance is a universal right</span>; every heart deserves to know the truth, regardless of language or background.\n\n"
+        + "We're here to spark a candle on your path, walk with you towards wisdom, and open the doors of mercy and goodness.\n\n"
+        + "<span class='bold'>Deenway</span>... where hearts meet, minds connect, and every seeker finds their way to the light.",
+      es: "Bienvenido a <span class='bold'>Deenway</span>.\n\n"
+        + "Nuestro proyecto es mucho más que una plataforma, es un <span class='bold'>mensaje de esperanza y luz</span> que cruza fronteras.\n\n"
+        + "Creemos que <span class='bold'>la guía es un derecho universal</span>; cada corazón merece conocer la verdad, sin importar su idioma ni procedencia.\n\n"
+        + "Estamos aquí para alumbrar tu camino, acompañarte hacia la sabiduría y abrirte las puertas de la misericordia y el bien.\n\n"
+        + "<span class='bold'>Deenway</span>... donde los corazones se encuentran, las mentes se conectan y cada buscador encuentra su luz.",
+      de: "Willkommen bei <span class='bold'>Deenway</span>.\n\n"
+        + "Unser Projekt ist mehr als nur eine Plattform – es ist eine <span class='bold'>Botschaft von Hoffnung und Licht</span>, die keine Grenzen kennt.\n\n"
+        + "Wir glauben, dass <span class='bold'>Wahrheit für alle zugänglich</span> sein sollte; jedes Herz verdient Führung, unabhängig von Sprache oder Herkunft.\n\n"
+        + "Wir sind da, um ein Licht auf deinem Weg zu entzünden, dich auf dem Weg zur Weisheit zu begleiten und die Türen des Guten zu öffnen.\n\n"
+        + "<span class='bold'>Deenway</span>... wo Herzen sich begegnen und jeder Suchende seinen Weg zum Licht findet.",
+      tr: "<span class='bold'>Deenway</span>'e hoş geldiniz.\n\n"
+        + "Projemiz sadece bir platform değil, sınırları aşan bir <span class='bold'>umut ve ışık mesajıdır</span>.\n\n"
+        + "<span class='bold'>Rehberliğin evrensel bir hak</span> olduğuna inanıyoruz; her kalp ve akıl, dili veya kökeni ne olursa olsun, gerçeği bilmeye layıktır.\n\n"
+        + "Yolunuza bir mum yakmak, sizi hikmete götüren yolda eşlik etmek ve iyiliğin kapılarını açmak için buradayız.\n\n"
+        + "<span class='bold'>Deenway</span>... kalplerin buluştuğu, akılların birleştiği ve her arayışçının ışığa ulaştığı yer.",
+      id: "Selamat datang di <span class='bold'>Deenway</span>.\n\n"
+        + "Proyek kami bukan sekadar platform, melainkan <span class='bold'>pesan harapan dan cahaya</span> yang melintasi batasan apa pun.\n\n"
+        + "Kami yakin <span class='bold'>petunjuk adalah hak semua orang</span>; setiap hati berhak mengenal kebenaran tanpa memandang bahasa atau latar belakang.\n\n"
+        + "Kami ingin menyalakan lilin di jalan Anda, menemani Anda menuju kebijaksanaan, dan membuka pintu kebaikan dan rahmat.\n\n"
+        + "<span class='bold'>Deenway</span>... tempat hati bertemu, pikiran bersatu, dan setiap pencari menemukan cahaya.",
+      ur: "<span class='bold'>Deenway</span> میں خوش آمدید۔\n\n"
+        + "ہمارا منصوبہ صرف ایک پلیٹ فارم نہیں بلکہ <span class='bold'>امید اور روشنی کا پیغام</span> ہے جو سرحدوں سے ماورا ہے۔\n\n"
+        + "ہم یقین رکھتے ہیں کہ <span class='bold'>ہدایت ہر فرد کا حق ہے</span>؛ ہر دل کو حق جاننے کا حق ہے، چاہے اس کی زبان یا پس منظر کچھ بھی ہو۔\n\n"
+        + "ہم آپ کے راستے میں روشنی جلانے، آپ کو دانائی کی طرف لے جانے اور بھلائی کے دروازے کھولنے کے لیے یہاں ہیں۔\n\n"
+        + "<span class='bold'>Deenway</span>... جہاں دل ملتے ہیں، ذہن جڑتے ہیں اور ہر تلاش کرنے والا اپنی روشنی پاتا ہے۔"
+    };
+
+    // عبارات "تصفح موقعك كما تحب" بثمان لغات
+    const browsePhrases = {
+      ar: "تصفح موقعك كما تحب",
+      fr: "Parcourez votre site comme vous aimez",
+      en: "Browse your site as you love",
+      es: "Navega tu sitio como te gusta",
+      de: "Durchstöbern Sie Ihre Seite, wie Sie möchten",
+      tr: "Sitenizde dilediğiniz gibi gezinin",
+      id: "Jelajahi situs Anda sesuka hati",
+      ur: "اپنی ویب سائٹ کو اپنی مرضی سے دریافت کریں"
     };
 
     let langs = Object.keys(taglines);
 
-    // العناصر
     const taglineEl = document.getElementById("changingTagline");
     const aboutEl = document.getElementById("aboutText");
     const languageDropdown = document.getElementById("languageDropdown");
+    const browsePhraseEl = document.getElementById("browsePhrase");
 
-    // اللغة المختارة من القائمة (أو الإنجليزية افتراضياً)
     let currentLang = languageDropdown.value || 'en';
 
-    // دالة لتحديث العبارة فقط (تغيير تلقائي)
     function updateTagline(lang) {
       taglineEl.style.opacity = 0;
       setTimeout(() => {
@@ -230,9 +293,9 @@
       }, 400);
     }
 
-    // دالة لتحديث الوصف فقط (تغيير عند اختيار المستخدم)
     function updateAbout(lang) {
-      aboutEl.textContent = aboutTexts[lang] || aboutTexts['en'];
+      // استخدم innerHTML لدعم النص الغليظ والسطر الجديد
+      aboutEl.innerHTML = (aboutTexts[lang] || aboutTexts['en']).replace(/\n/g, "<br>");
       if (lang === "ar" || lang === "ur") {
         aboutEl.classList.remove("ltr");
       } else {
@@ -240,26 +303,41 @@
       }
     }
 
-    // عند تغيير اللغة من القائمة: نغير الوصف ونزامن اختيار القائمة مع النص المتغير
+    function updateBrowsePhrase(lang) {
+      browsePhraseEl.style.opacity = 0;
+      setTimeout(() => {
+        browsePhraseEl.textContent = browsePhrases[lang] || browsePhrases['en'];
+        browsePhraseEl.style.opacity = 1;
+      }, 400);
+    }
+
     function changeLanguage(lang) {
       currentLang = lang;
       languageDropdown.value = lang;
       updateAbout(lang);
-      // عندما يختار المستخدم لغة، نوقف تحديث العبارة التلقائي للغة المختارة حاليًا
       taglineIndex = langs.indexOf(lang);
+      browsePhraseIndex = langs.indexOf(lang);
       updateTagline(lang);
+      updateBrowsePhrase(lang);
     }
 
-    // البداية: نعرض الوصف حسب اللغة الافتراضية أو المختارة من قبل المستخدم
+    // البداية
     updateAbout(currentLang);
+    updateBrowsePhrase(currentLang);
 
-    // التبديل التلقائي للعبارة فقط كل 4 ثواني
+    // التبديل التلقائي للعبارة والشعار
     let taglineIndex = langs.indexOf(currentLang);
     setInterval(() => {
       taglineIndex = (taglineIndex + 1) % langs.length;
       updateTagline(langs[taglineIndex]);
     }, 4000);
 
+    // التبديل التلقائي لعبارة "تصفح موقعك كما تحب"
+    let browsePhraseIndex = langs.indexOf(currentLang);
+    setInterval(() => {
+      browsePhraseIndex = (browsePhraseIndex + 1) % langs.length;
+      updateBrowsePhrase(langs[browsePhraseIndex]);
+    }, 4000);
   </script>
 </body>
 </html>
