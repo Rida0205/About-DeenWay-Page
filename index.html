@@ -5,132 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Deenway</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9fbfc;
-      color: #2c3e50;
-      line-height: 1.6;
-    }
-
-    .center {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      min-height: 100vh;
-      padding: 30px 20px 0;
-    }
-
-    .logo {
-      font-size: 48px;
-      font-weight: 900;
-      background: linear-gradient(90deg, #1d3557, #457b9d);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 2px;
-      user-select: none;
-      margin-bottom: 10px;
-    }
-
-    .tagline {
-      font-size: 20px;
-      font-style: italic;
-      color: #7f8c8d;
-      margin-bottom: 30px;
-      letter-spacing: 0.6px;
-      transition: opacity 0.6s ease;
-      min-height: 28px;
-      max-width: 90vw;
-    }
-
-    .about {
-      font-size: 18px;
-      background: #ffffff;
-      padding: 25px;
-      border-radius: 16px;
-      color: #34495e;
-      max-width: 800px;
-      font-weight: 500;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-      transition: all 0.4s ease;
-      margin-bottom: 40px;
-      min-height: 120px;
-      direction: rtl;
-      text-align: right;
-    }
-
-    .ltr {
-      direction: ltr;
-      text-align: left;
-    }
-
-    .language-select {
-      margin-bottom: 25px;
-      width: 160px;
-      position: relative;
-    }
-
-    select {
-      width: 100%;
-      padding: 8px 12px;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 12px;
-      border: 2px solid #2980b9;
-      background: white;
-      color: #2980b9;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-    }
-
-    select:hover, select:focus {
-      background-color: #2980b9;
-      color: white;
-      outline: none;
-      border-color: #1d3557;
-    }
-
-    .language-select::after {
-      content: "▼";
-      position: absolute;
-      top: 50%;
-      right: 12px;
-      transform: translateY(-50%);
-      pointer-events: none;
-      color: #2980b9;
-      font-size: 12px;
-      font-weight: 700;
-      user-select: none;
-    }
-
-    @media (max-width: 600px) {
-      .logo {
-        font-size: 36px;
-      }
-
-      .tagline {
-        font-size: 18px;
-      }
-
-      .about {
-        font-size: 16px;
-      }
-
-      .language-select {
-        width: 100%;
-        max-width: 280px;
-      }
-    }
+    /* ... (نفس CSS اللي أرسلته) ... */
   </style>
 </head>
 <body>
@@ -152,6 +27,17 @@
     </div>
 
     <div class="about" id="aboutText"></div>
+
+    <div class="sections">
+      <a href="#">العربية</a>
+      <a href="#">Français</a>
+      <a href="#">English</a>
+      <a href="#">Español</a>
+      <a href="#">Deutsch</a>
+      <a href="#">Türkçe</a>
+      <a href="#">Bahasa</a>
+      <a href="#">اردو</a>
+    </div>
   </div>
 
   <script>
@@ -177,54 +63,55 @@
       ur: "Deenway ایک دعوتی منصوبہ ہے جو دلوں اور عقل کی زبان میں ہدایت پہنچانے کا عزم رکھتا ہے۔ ہم سمجھتے ہیں کہ ہدایت کی کوئی جغرافیائی یا لسانی سرحد نہیں۔"
     };
 
-    const langs = Object.keys(taglines);
+    let langs = Object.keys(taglines);
+
+    // العناصر
     const taglineEl = document.getElementById("changingTagline");
     const aboutEl = document.getElementById("aboutText");
     const languageDropdown = document.getElementById("languageDropdown");
 
-    let taglineIndex = langs.indexOf(languageDropdown.value);
-    let currentLang = languageDropdown.value;
+    // اللغة المختارة من القائمة (أو الإنجليزية افتراضياً)
+    let currentLang = languageDropdown.value || 'en';
 
+    // دالة لتحديث العبارة فقط (تغيير تلقائي)
     function updateTagline(lang) {
       taglineEl.style.opacity = 0;
       setTimeout(() => {
-        taglineEl.textContent = taglines[lang];
+        taglineEl.textContent = taglines[lang] || taglines['en'];
         taglineEl.style.opacity = 1;
       }, 400);
     }
 
+    // دالة لتحديث الوصف فقط (تغيير عند اختيار المستخدم)
     function updateAbout(lang) {
-      aboutEl.style.opacity = 0;
-      setTimeout(() => {
-        aboutEl.textContent = aboutTexts[lang];
-        if (lang === "ar" || lang === "ur") {
-          aboutEl.classList.remove("ltr");
-          aboutEl.style.direction = "rtl";
-          aboutEl.style.textAlign = "right";
-        } else {
-          aboutEl.classList.add("ltr");
-          aboutEl.style.direction = "ltr";
-          aboutEl.style.textAlign = "left";
-        }
-        aboutEl.style.opacity = 1;
-      }, 300);
+      aboutEl.textContent = aboutTexts[lang] || aboutTexts['en'];
+      if (lang === "ar" || lang === "ur") {
+        aboutEl.classList.remove("ltr");
+      } else {
+        aboutEl.classList.add("ltr");
+      }
     }
 
+    // عند تغيير اللغة من القائمة: نغير الوصف ونزامن اختيار القائمة مع النص المتغير
+    function changeLanguage(lang) {
+      currentLang = lang;
+      languageDropdown.value = lang;
+      updateAbout(lang);
+      // عندما يختار المستخدم لغة، نوقف تحديث العبارة التلقائي للغة المختارة حاليًا
+      taglineIndex = langs.indexOf(lang);
+      updateTagline(lang);
+    }
+
+    // البداية: نعرض الوصف حسب اللغة الافتراضية أو المختارة من قبل المستخدم
+    updateAbout(currentLang);
+
+    // التبديل التلقائي للعبارة فقط كل 4 ثواني
+    let taglineIndex = langs.indexOf(currentLang);
     setInterval(() => {
       taglineIndex = (taglineIndex + 1) % langs.length;
       updateTagline(langs[taglineIndex]);
     }, 4000);
 
-    function changeLanguage(lang) {
-      currentLang = lang;
-      languageDropdown.value = lang;
-      taglineIndex = langs.indexOf(lang);
-      updateAbout(lang);
-      updateTagline(lang);
-    }
-
-    updateAbout(currentLang);
-    updateTagline(currentLang);
   </script>
 </body>
 </html>
