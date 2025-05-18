@@ -2,37 +2,32 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>Deenway | من نحن</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deenway</title>
   <style>
-    /* التصميم الكامل */
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fff;
       color: #2c3e50;
-      text-align: right;
-      padding: 40px 20px;
       line-height: 1.6;
-      min-height: 100vh;
+    }
+
+    .center {
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      padding: 30px 20px 0;
     }
-    .container {
-      max-width: 850px;
-      width: 80%;
-      background: #ffffff;
-      padding: 40px 50px;
-      border-radius: 15px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-      text-align: right;
-      color: #34495e;
-      margin-top: 20px;
-    }
+
     .logo {
       font-size: 48px;
       font-weight: 900;
@@ -40,119 +35,131 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       letter-spacing: 2px;
-      margin-bottom: 10px;
       user-select: none;
+      margin-bottom: 10px;
     }
+
     .tagline {
       font-size: 16px;
       font-style: italic;
       color: #7f8c8d;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
       letter-spacing: 0.6px;
     }
+
     .desc {
-      font-size: 20px;
-      line-height: 1.9;
-      min-height: 130px;
-      margin-bottom: 30px;
-      color: #2c3e50;
+      font-size: 22px;
       font-weight: 600;
+      max-width: 850px;
+      color: #2c3e50;
       transition: opacity 0.6s ease;
+      margin-bottom: 40px;
     }
+
     .about {
-      font-size: 17px;
-      background: #f4f7fa;
-      padding: 25px 30px;
+      font-size: 18px;
+      background: #f0f4f8;
+      padding: 25px;
       border-radius: 12px;
       margin-bottom: 45px;
       color: #34495e;
-      min-height: 90px;
-      box-shadow: inset 0 0 15px rgba(0,0,0,0.03);
-      line-height: 1.6;
+      max-width: 800px;
       font-weight: 500;
       transition: opacity 0.6s ease;
     }
+
     .sections {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 18px;
+      gap: 15px;
+      margin-bottom: 50px;
     }
+
     .sections a {
-      padding: 12px 28px;
+      padding: 12px 25px;
       border: 2px solid #2980b9;
       border-radius: 25px;
       text-decoration: none;
       color: #2980b9;
       font-weight: 700;
       font-size: 16px;
-      box-shadow: 0 4px 10px rgba(41, 128, 185, 0.2);
       transition: background 0.3s ease, color 0.3s ease;
-      user-select: none;
     }
+
     .sections a:hover {
       background: #2980b9;
       color: #fff;
-      box-shadow: 0 6px 20px rgba(41, 128, 185, 0.5);
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 36px;
+      }
+
+      .desc {
+        font-size: 18px;
+      }
+
+      .about {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="center">
     <div class="logo">DEENWAY</div>
-    <div class="tagline">Guiding hearts to the truth</div>
-
-    <div class="desc" id="rotatingText"></div>
-
-    <div class="about" id="rotatingAbout"></div>
-
+    <div class="tagline">Guidance without borders</div>
+    <div class="desc" id="mainText">...</div>
+    <div class="about" id="aboutText">...</div>
     <div class="sections">
-      <a href="https://deenway.net/ar">العربية</a>
-      <a href="https://deenway.net/fr">Français</a>
-      <a href="https://deenway.net/en">English</a>
-      <a href="https://deenway.net/es">Español</a>
-      <a href="https://deenway.net/de">Deutsch</a>
-      <a href="https://deenway.net/tr">Türkçe</a>
-      <a href="https://deenway.net/id">Bahasa</a>
-      <a href="https://deenway.net/ur">اردو</a>
+      <a href="#">العربية</a>
+      <a href="#">Français</a>
+      <a href="#">English</a>
+      <a href="#">Español</a>
+      <a href="#">Deutsch</a>
+      <a href="#">Türkçe</a>
+      <a href="#">Bahasa</a>
+      <a href="#">اردو</a>
     </div>
   </div>
 
   <script>
-    const phrases = [
-      "موقع ديني هدفه الأسمى إيصال المعلومة كما ينبغي لها أن تصل، وتطبيق وصية المصطفى ﷺ: \"بلّغوا عني ولو آية\".",
-      "Un site religieux dont le but est de transmettre fidèlement le message de l'islam au monde.",
-      "A spiritual platform dedicated to sharing authentic Islamic knowledge across the globe.",
-      "Un sitio islámico para difundir la sabiduría profética a todos los pueblos.",
-      "Eine religiöse Plattform, um die Botschaft des Islam zugänglich zu machen.",
-      "İslami bilginin kalplere ulaşmasını amaçlayan bir davet platformudur.",
-      "Situs Islam untuk menyampaikan cahaya petunjuk ke seluruh dunia.",
-      "ایک ایسا اسلامی پلیٹ فارم جو علم کو ہر دل تک پہنچانا چاہتا ہے۔"
-    ];
+    const mainTexts = {
+      ar: "موقع ديني هدفه الأسمى إيصال المعلومة كما ينبغي لها أن تصل، وتطبيق وصية المصطفى ﷺ: \"بلّغوا عني ولو آية\". نسعى للخير، وندل عليه.",
+      fr: "Un site religieux dont l’objectif suprême est de transmettre le message comme il se doit, en appliquant la recommandation du Prophète ﷺ : « Transmettez de moi ne serait-ce qu’un verset ».",
+      en: "A religious platform whose ultimate goal is to deliver the message properly, fulfilling the Prophet's ﷺ advice: “Convey from me, even if only one verse.”",
+      es: "Un sitio religioso con el objetivo supremo de transmitir el mensaje tal como debe ser transmitido, cumpliendo con el consejo del Profeta ﷺ: «Transmitid de mí aunque sea un solo versículo».",
+      de: "Eine religiöse Website mit dem höchsten Ziel, die Botschaft so zu übermitteln, wie sie übermittelt werden soll, gemäß dem Rat des Propheten ﷺ: „Übermittelt von mir, selbst wenn es nur ein Vers ist.“",
+      tr: "Peygamber Efendimiz’in ﷺ tavsiyesine uyarak: “Benden bir ayet bile olsa iletin” şiarıyla, dini doğru şekilde aktarmayı amaçlayan bir platformdur.",
+      id: "Sebuah situs keagamaan yang bertujuan menyampaikan pesan sebagaimana mestinya, sesuai sabda Nabi ﷺ: “Sampaikan dariku walau satu ayat.”",
+      ur: "ایک دینی ویب سائٹ جس کا مقصد پیغام کو صحیح طریقے سے پہنچانا ہے، جیسا کہ نبی ﷺ نے فرمایا: ''میری طرف سے ایک آیت بھی پہنچاؤ۔''"
+    };
 
-    const abouts = [
-      "Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية.<br>من أجل ذلك، نوفر محتوانا بلغات متعددة لنجعل النور متاحًا لكل من يبحث عنه، أيًا كانت لغته أو خلفيته.",
-      "Deenway est un projet de prédication visant à transmettre la guidance dans la langue des cœurs et des esprits. Nous croyons que la guidance ne connaît ni frontières géographiques ni linguistiques.<br>Pour cela, nous fournissons notre contenu en plusieurs langues afin de rendre la lumière accessible à tous, quelles que soient leur langue ou origine.",
-      "Deenway is a dawah project aiming to deliver guidance in the language of hearts and minds. We believe guidance knows no geographic or linguistic boundaries.<br>Therefore, we provide our content in multiple languages to make the light available to all seekers regardless of their language or background.",
-      "Deenway es un proyecto de dawah que tiene como objetivo transmitir la guía en el idioma de los corazones y las mentes. Creemos que la guía no conoce fronteras geográficas ni lingüísticas.<br>Por ello, ofrecemos nuestro contenido en varios idiomas para hacer la luz accesible a todos los que la buscan, sin importar su idioma o procedencia.",
-      "Deenway ist ein Dawah-Projekt, das darauf abzielt, Führung in der Sprache der Herzen und Köpfe zu vermitteln. Wir glauben, dass Führung keine geografischen oder sprachlichen Grenzen kennt.<br>Daher bieten wir unsere Inhalte in mehreren Sprachen an, um das Licht allen Suchenden zugänglich zu machen, unabhängig von ihrer Sprache oder Herkunft.",
-      "Deenway, kalplerin ve zihinlerin dilinde rehberlik sunmayı amaçlayan bir davet projesidir. Rehberliğin coğrafi veya dilsel sınırları olmadığını düşünüyoruz.<br>Bu nedenle, ışığı tüm arayanlara ulaştırmak için içeriğimizi birden çok dilde sunuyoruz.",
-      "Deenway adalah proyek dakwah yang bertujuan menyampaikan petunjuk dalam bahasa hati dan pikiran. Kami percaya petunjuk tidak mengenal batas geografis atau bahasa.<br>Oleh karena itu, kami menyediakan konten dalam berbagai bahasa untuk membuat cahaya tersedia bagi semua pencari tanpa memandang bahasa atau latar belakang mereka.",
-      "Deenway ایک تبلیغی منصوبہ ہے جو دلوں اور ذہنوں کی زبان میں رہنمائی فراہم کرنے کا ہدف رکھتا ہے۔ ہم یقین رکھتے ہیں کہ رہنمائی جغرافیائی یا لسانی حدیں نہیں جانتی۔<br>اسی لیے ہم اپنے مواد کو متعدد زبانوں میں فراہم کرتے ہیں تاکہ روشنی ہر تلاش کرنے والے تک پہنچ سکے، چاہے ان کی زبان یا پس منظر کچھ بھی ہو۔"
-    ];
+    const aboutTexts = {
+      ar: "Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية. من أجل ذلك، نوفر محتوانا بلغات متعددة لنجعل النور متاحًا لكل من يبحث عنه، أيًا كانت لغته أو خلفيته.",
+      fr: "Deenway est un projet de prêche visant à transmettre la guidance par le langage des cœurs et des esprits. Nous croyons que la lumière ne connaît ni frontières géographiques ni linguistiques, c’est pourquoi nous proposons notre contenu en plusieurs langues.",
+      en: "Deenway is a da'wah project aiming to deliver guidance in the language of hearts and minds. We believe that guidance knows no geographical or linguistic boundaries, which is why we provide our content in multiple languages.",
+      es: "Deenway es un proyecto de da‘wah cuyo objetivo es transmitir la guía en el idioma de los corazones y las mentes. Creemos que la guía no conoce fronteras geográficas ni lingüísticas.",
+      de: "Deenway ist ein Da'wah-Projekt, das darauf abzielt, die Führung in der Sprache der Herzen und des Verstandes zu vermitteln. Wir glauben, dass die Wahrheit keine Grenzen kennt.",
+      tr: "Deenway, kalplerin ve akılların diliyle rehberliği ulaştırmayı amaçlayan bir davet projesidir. Hidayetin coğrafi veya dilsel sınırları tanımadığına inanıyoruz.",
+      id: "Deenway adalah proyek dakwah yang bertujuan menyampaikan petunjuk dengan bahasa hati dan akal. Kami percaya bahwa hidayah tidak mengenal batas geografis maupun bahasa.",
+      ur: "Deenway ایک دعوتی منصوبہ ہے جو دلوں اور عقل کی زبان میں ہدایت پہنچانے کا عزم رکھتا ہے۔ ہم سمجھتے ہیں کہ ہدایت کی کوئی جغرافیائی یا لسانی سرحد نہیں۔"
+    };
 
+    const langs = Object.keys(mainTexts);
     let index = 0;
-    const rotatingTextEl = document.getElementById("rotatingText");
-    const rotatingAboutEl = document.getElementById("rotatingAbout");
 
-    function rotateContent() {
-      rotatingTextEl.textContent = phrases[index];
-      rotatingAboutEl.innerHTML = abouts[index];
-      index = (index + 1) % phrases.length;
+    function rotateText() {
+      const lang = langs[index];
+      document.getElementById("mainText").textContent = mainTexts[lang];
+      document.getElementById("aboutText").textContent = aboutTexts[lang];
+      index = (index + 1) % langs.length;
     }
 
-    rotateContent(); // عرض أول عبارة فوراً
-    setInterval(rotateContent, 5000); // كل 5 ثواني تتغير
+    rotateText(); // Show initial
+    setInterval(rotateText, 6000); // Change every 6s
   </script>
 </body>
 </html>
