@@ -144,6 +144,9 @@
       font-weight: 700;
       font-size: 16px;
       transition: background 0.3s ease, color 0.3s ease;
+      min-width: 110px;
+      text-align: center;
+      box-sizing: border-box;
     }
 
     .sections a:hover {
@@ -170,6 +173,21 @@
       }
       .browse-anyway {
         font-size: 17px;
+      }
+
+      .sections {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 40px;
+        width: 100%;
+        max-width: 370px;
+      }
+      .sections a {
+        min-width: unset;
+        padding: 12px 0;
+        font-size: 15px;
+        border-radius: 18px;
       }
     }
   </style>
