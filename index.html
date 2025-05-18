@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Deenway | من نحن</title>
   <style>
     * {
@@ -38,8 +38,8 @@
     .desc {
       font-size: 18px;
       line-height: 1.8;
-      margin-bottom: 40px;
-      min-height: 100px;
+      margin-bottom: 20px;
+      min-height: 120px;
     }
     .about {
       font-size: 17px;
@@ -48,6 +48,7 @@
       padding: 20px;
       border-radius: 10px;
       margin-bottom: 40px;
+      min-height: 80px;
     }
     .sections {
       display: flex;
@@ -76,10 +77,7 @@
 
     <div class="desc" id="rotatingText"></div>
 
-    <div class="about">
-      Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية.<br>
-      من أجل ذلك، نوفر محتوانا بلغات متعددة لنجعل النور متاحًا لكل من يبحث عنه، أيًا كانت لغته أو خلفيته.
-    </div>
+    <div class="about" id="rotatingAbout"></div>
 
     <div class="sections">
       <a href="https://deenway.net/ar">العربية</a>
@@ -105,16 +103,29 @@
       "ایک ایسا اسلامی پلیٹ فارم جو علم کو ہر دل تک پہنچانا چاہتا ہے۔"
     ];
 
-    let index = 0;
-    const el = document.getElementById("rotatingText");
+    const abouts = [
+      "Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية.<br>من أجل ذلك، نوفر محتوانا بلغات متعددة لنجعل النور متاحًا لكل من يبحث عنه، أيًا كانت لغته أو خلفيته.",
+      "Deenway est un projet de prédication visant à transmettre la guidance dans la langue des cœurs et des esprits. Nous croyons que la guidance ne connaît ni frontières géographiques ni linguistiques.<br>Pour cela, nous fournissons notre contenu en plusieurs langues afin de rendre la lumière accessible à tous, quelles que soient leur langue ou origine.",
+      "Deenway is a dawah project aiming to deliver guidance in the language of hearts and minds. We believe guidance knows no geographic or linguistic boundaries.<br>Therefore, we provide our content in multiple languages to make the light available to all seekers regardless of their language or background.",
+      "Deenway es un proyecto de dawah que tiene como objetivo transmitir la guía en el idioma de los corazones y las mentes. Creemos que la guía no conoce fronteras geográficas ni lingüísticas.<br>Por ello, ofrecemos nuestro contenido en varios idiomas para hacer la luz accesible a todos los que la buscan, sin importar su idioma o procedencia.",
+      "Deenway ist ein Dawah-Projekt, das darauf abzielt, Führung in der Sprache der Herzen und Köpfe zu vermitteln. Wir glauben, dass Führung keine geografischen oder sprachlichen Grenzen kennt.<br>Daher bieten wir unsere Inhalte in mehreren Sprachen an, um das Licht allen Suchenden zugänglich zu machen, unabhängig von ihrer Sprache oder Herkunft.",
+      "Deenway, kalplerin ve zihinlerin dilinde rehberlik sunmayı amaçlayan bir davet projesidir. Rehberliğin coğrafi veya dilsel sınırları olmadığını düşünüyoruz.<br>Bu nedenle, ışığı tüm arayanlara ulaştırmak için içeriğimizi birden çok dilde sunuyoruz.",
+      "Deenway adalah proyek dakwah yang bertujuan menyampaikan petunjuk dalam bahasa hati dan pikiran. Kami percaya petunjuk tidak mengenal batas geografis atau bahasa.<br>Oleh karena itu, kami menyediakan konten dalam berbagai bahasa untuk membuat cahaya tersedia bagi semua pencari tanpa memandang bahasa atau latar belakang mereka.",
+      "Deenway ایک تبلیغی منصوبہ ہے جو دلوں اور ذہنوں کی زبان میں رہنمائی فراہم کرنے کا ہدف رکھتا ہے۔ ہم یقین رکھتے ہیں کہ رہنمائی جغرافیائی یا لسانی حدیں نہیں جانتی۔<br>اسی لیے ہم اپنے مواد کو متعدد زبانوں میں فراہم کرتے ہیں تاکہ روشنی ہر تلاش کرنے والے تک پہنچ سکے، چاہے ان کی زبان یا پس منظر کچھ بھی ہو۔"
+    ];
 
-    function rotateText() {
-      el.textContent = phrases[index];
+    let index = 0;
+    const rotatingTextEl = document.getElementById("rotatingText");
+    const rotatingAboutEl = document.getElementById("rotatingAbout");
+
+    function rotateContent() {
+      rotatingTextEl.textContent = phrases[index];
+      rotatingAboutEl.innerHTML = abouts[index];
       index = (index + 1) % phrases.length;
     }
 
-    rotateText(); // عرض أول عبارة فورًا
-    setInterval(rotateText, 5000); // كل 5 ثوانٍ
+    rotateContent(); // عرض أول عبارة فوراً
+    setInterval(rotateContent, 5000); // كل 5 ثواني تتغير
   </script>
 </body>
 </html>
