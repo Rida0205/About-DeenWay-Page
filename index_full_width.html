@@ -1,4 +1,5 @@
-
+# إنشاء نسخة بدون خلفية أو ظل لصندوق .container لجعل الصفحة تبدو ممتدة بالكامل
+html_content_no_box = """
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -11,15 +12,12 @@
       background-color: #ffffff;
       color: #333;
       transition: all 0.3s ease;
+      text-align: center;
     }
 
     .container {
       width: 100%;
       padding: 30px 50px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-      text-align: center;
       box-sizing: border-box;
     }
 
@@ -67,35 +65,35 @@
     const messages = [
       {
         lang: "ar",
-        text: "موقع ديني هدفه الأسمى إيصال المعلومة كما ينبغي لها أن تصل، وتطبيق وصية المصطفى ﷺ: \"بلّغوا عني ولو آية\". نسعى للخير، وندل عليه."
+        text: "موقع ديني هدفه الأسمى إيصال المعلومة كما ينبغي لها أن تصل، وتطبيق وصية المصطفى ﷺ: \\"بلّغوا عني ولو آية\\". نسعى للخير، وندل عليه."
       },
       {
         lang: "fr",
-        text: "Un site religieux dont le but suprême est de transmettre l'information comme elle doit l'être, en appliquant la recommandation du Prophète ﷺ : \"Transmettez de moi ne serait-ce qu’un verset.\" Nous recherchons le bien et y guidons."
+        text: "Un site religieux dont le but suprême est de transmettre l'information comme elle doit l'être, en appliquant la recommandation du Prophète ﷺ : \\"Transmettez de moi ne serait-ce qu’un verset.\\" Nous recherchons le bien et y guidons."
       },
       {
         lang: "en",
-        text: "A religious website whose ultimate goal is to deliver knowledge as it should be, applying the command of the Prophet ﷺ: \"Convey from me even one verse.\" We strive for goodness and guide to it."
+        text: "A religious website whose ultimate goal is to deliver knowledge as it should be, applying the command of the Prophet ﷺ: \\"Convey from me even one verse.\\" We strive for goodness and guide to it."
       },
       {
         lang: "es",
-        text: "Un sitio religioso cuyo objetivo supremo es transmitir el conocimiento como debe ser, aplicando la enseñanza del Profeta ﷺ: \"Transmitid de mí aunque sea un verso.\" Buscamos el bien y guiamos hacia él."
+        text: "Un sitio religioso cuyo objetivo supremo es transmitir el conocimiento como debe ser, aplicando la enseñanza del Profeta ﷺ: \\"Transmitid de mí aunque sea un verso.\\" Buscamos el bien y guiamos hacia él."
       },
       {
         lang: "de",
-        text: "Eine religiöse Website mit dem höchsten Ziel, Wissen so zu vermitteln, wie es sein soll, gemäß dem Rat des Propheten ﷺ: \"Übermittelt von mir auch nur einen Vers.\" Wir streben nach dem Guten und zeigen den Weg dorthin."
+        text: "Eine religiöse Website mit dem höchsten Ziel, Wissen so zu vermitteln, wie es sein soll, gemäß dem Rat des Propheten ﷺ: \\"Übermittelt von mir auch nur einen Vers.\\" Wir streben nach dem Guten und zeigen den Weg dorthin."
       },
       {
         lang: "tr",
-        text: "Bilginin doğru şekilde iletilmesini amaçlayan dini bir siteyiz. Peygamber Efendimiz ﷺ’in emrini uyguluyoruz: \"Benden bir ayet bile olsa iletin.\" Hayra ulaşmak ve ulaştırmak için çabalıyoruz."
+        text: "Bilginin doğru şekilde iletilmesini amaçlayan dini bir siteyiz. Peygamber Efendimiz ﷺ’in emrini uyguluyoruz: \\"Benden bir ayet bile olsa iletin.\\" Hayra ulaşmak ve ulaştırmak için çabalıyoruz."
       },
       {
         lang: "id",
-        text: "Situs keagamaan yang bertujuan menyampaikan ilmu sebagaimana mestinya, menerapkan wasiat Nabi ﷺ: \"Sampaikan dariku walau hanya satu ayat.\" Kami berupaya untuk kebaikan dan membimbing ke arahnya."
+        text: "Situs keagamaan yang bertujuan menyampaikan ilmu sebagaimana mestinya, menerapkan wasiat Nabi ﷺ: \\"Sampaikan dariku walau hanya satu ayat.\\" Kami berupaya untuk kebaikan dan membimbing ke arahnya."
       },
       {
         lang: "ur",
-        text: "ایک دینی ویب سائٹ جس کا اعلیٰ مقصد علم کو ویسے ہی پہنچانا ہے جیسے پہنچنا چاہیے، اور نبی ﷺ کی وصیت پر عمل کرنا: \"میری طرف سے ایک آیت بھی پہنچاؤ۔\" ہم بھلائی کی کوشش کرتے ہیں اور اس کی طرف رہنمائی کرتے ہیں۔"
+        text: "ایک دینی ویب سائٹ جس کا اعلیٰ مقصد علم کو ویسے ہی پہنچانا ہے جیسے پہنچنا چاہیے، اور نبی ﷺ کی وصیت پر عمل کرنا: \\"میری طرف سے ایک آیت بھی پہنچاؤ۔\\" ہم بھلائی کی کوشش کرتے ہیں اور اس کی طرف رہنمائی کرتے ہیں۔"
       }
     ];
 
@@ -125,3 +123,11 @@
 
 </body>
 </html>
+"""
+
+# حفظ الملف الجديد
+file_path_no_box = "/mnt/data/index_no_box.html"
+with open(file_path_no_box, "w", encoding="utf-8") as f:
+    f.write(html_content_no_box)
+
+file_path_no_box
