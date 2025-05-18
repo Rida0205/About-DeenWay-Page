@@ -16,6 +16,7 @@
       background: #f9fbfc;
       color: #2c3e50;
       line-height: 1.6;
+      overflow: hidden; /* يمنع السكرول */
     }
 
     .center {
@@ -25,7 +26,9 @@
       align-items: center;
       text-align: center;
       min-height: 100vh;
+      height: 100vh;
       padding: 30px 20px 0;
+      overflow: hidden;
     }
 
     .logo {
@@ -53,7 +56,7 @@
     .about {
       font-size: 18px;
       background: #ffffff;
-      padding: 25px;
+      padding: 19px;
       border-radius: 16px;
       color: #34495e;
       max-width: 800px;
@@ -61,8 +64,10 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       transition: all 0.4s ease;
       margin-bottom: 40px;
-      min-height: 180px;
-      white-space: pre-line;
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: inherit;
     }
 
@@ -162,6 +167,7 @@
 
       .about {
         font-size: 16px;
+        min-height: 90px;
       }
 
       .language-select {
@@ -220,51 +226,18 @@
       ur: "دلوں کی رہنمائی حق کی طرف"
     };
 
-    // وصف مطول ومؤثر مع عبارات غليظة وفواصل أسطر
+    // وصف مطول ومؤثر مع عبارات غليظة في سطر واحد (بدون فواصل اسطر)
     const aboutTexts = {
-      ar: "مرحبًا بك في <span class='bold'>Deenway</span>.\n\n"
-        + "مشروعنا ليس مجرد منصة، بل هو <span class='bold'>رسالة أمل ونور</span> تعبر الحدود. نطمح أن نوصل الهداية لكل قلب يبحث عن الحق، بلغته وثقافته.\n\n"
-        + "نؤمن أن <span class='bold'>النور لا يُحجب بل يُهْدَى</span>، وأن لكل إنسان الحق في أن يعرف طريق الحق مهما اختلفت لغته أو خلفيته.\n\n"
-        + "نحن هنا لنُشْعِل شمعة في دربك، ونرافقك بخطى ثابتة نحو الحكمة والمعرفة، ونفتح لك أبواب الرحمة والخير.\n\n"
-        + "<span class='bold'>Deenway</span>... حيث تتلاقى القلوب، وتلتقي العقول، ويجد كل باحث عن النور سبيله.",
-      fr: "Bienvenue sur <span class='bold'>Deenway</span>.\n\n"
-        + "Notre projet est bien plus qu'une simple plateforme ; c'est un <span class='bold'>message d'espoir et de lumière</span> qui traverse les frontières.\n\n"
-        + "Nous croyons que <span class='bold'>la lumière doit être partagée</span> et que chaque cœur mérite d'être guidé, peu importe la langue ou la culture.\n\n"
-        + "Nous sommes là pour illuminer votre chemin, vous accompagner pas à pas vers la sagesse, ouvrir les portes de la miséricorde et du bien.\n\n"
-        + "<span class='bold'>Deenway</span>... là où les cœurs se rencontrent et où chacun peut trouver la voie de la lumière.",
-      en: "Welcome to <span class='bold'>Deenway</span>.\n\n"
-        + "Our project is more than just a platform—it's a <span class='bold'>message of hope and light</span> that transcends all boundaries.\n\n"
-        + "We believe that <span class='bold'>guidance is a universal right</span>; every heart deserves to know the truth, regardless of language or background.\n\n"
-        + "We're here to spark a candle on your path, walk with you towards wisdom, and open the doors of mercy and goodness.\n\n"
-        + "<span class='bold'>Deenway</span>... where hearts meet, minds connect, and every seeker finds their way to the light.",
-      es: "Bienvenido a <span class='bold'>Deenway</span>.\n\n"
-        + "Nuestro proyecto es mucho más que una plataforma, es un <span class='bold'>mensaje de esperanza y luz</span> que cruza fronteras.\n\n"
-        + "Creemos que <span class='bold'>la guía es un derecho universal</span>; cada corazón merece conocer la verdad, sin importar su idioma ni procedencia.\n\n"
-        + "Estamos aquí para alumbrar tu camino, acompañarte hacia la sabiduría y abrirte las puertas de la misericordia y el bien.\n\n"
-        + "<span class='bold'>Deenway</span>... donde los corazones se encuentran, las mentes se conectan y cada buscador encuentra su luz.",
-      de: "Willkommen bei <span class='bold'>Deenway</span>.\n\n"
-        + "Unser Projekt ist mehr als nur eine Plattform – es ist eine <span class='bold'>Botschaft von Hoffnung und Licht</span>, die keine Grenzen kennt.\n\n"
-        + "Wir glauben, dass <span class='bold'>Wahrheit für alle zugänglich</span> sein sollte; jedes Herz verdient Führung, unabhängig von Sprache oder Herkunft.\n\n"
-        + "Wir sind da, um ein Licht auf deinem Weg zu entzünden, dich auf dem Weg zur Weisheit zu begleiten und die Türen des Guten zu öffnen.\n\n"
-        + "<span class='bold'>Deenway</span>... wo Herzen sich begegnen und jeder Suchende seinen Weg zum Licht findet.",
-      tr: "<span class='bold'>Deenway</span>'e hoş geldiniz.\n\n"
-        + "Projemiz sadece bir platform değil, sınırları aşan bir <span class='bold'>umut ve ışık mesajıdır</span>.\n\n"
-        + "<span class='bold'>Rehberliğin evrensel bir hak</span> olduğuna inanıyoruz; her kalp ve akıl, dili veya kökeni ne olursa olsun, gerçeği bilmeye layıktır.\n\n"
-        + "Yolunuza bir mum yakmak, sizi hikmete götüren yolda eşlik etmek ve iyiliğin kapılarını açmak için buradayız.\n\n"
-        + "<span class='bold'>Deenway</span>... kalplerin buluştuğu, akılların birleştiği ve her arayışçının ışığa ulaştığı yer.",
-      id: "Selamat datang di <span class='bold'>Deenway</span>.\n\n"
-        + "Proyek kami bukan sekadar platform, melainkan <span class='bold'>pesan harapan dan cahaya</span> yang melintasi batasan apa pun.\n\n"
-        + "Kami yakin <span class='bold'>petunjuk adalah hak semua orang</span>; setiap hati berhak mengenal kebenaran tanpa memandang bahasa atau latar belakang.\n\n"
-        + "Kami ingin menyalakan lilin di jalan Anda, menemani Anda menuju kebijaksanaan, dan membuka pintu kebaikan dan rahmat.\n\n"
-        + "<span class='bold'>Deenway</span>... tempat hati bertemu, pikiran bersatu, dan setiap pencari menemukan cahaya.",
-      ur: "<span class='bold'>Deenway</span> میں خوش آمدید۔\n\n"
-        + "ہمارا منصوبہ صرف ایک پلیٹ فارم نہیں بلکہ <span class='bold'>امید اور روشنی کا پیغام</span> ہے جو سرحدوں سے ماورا ہے۔\n\n"
-        + "ہم یقین رکھتے ہیں کہ <span class='bold'>ہدایت ہر فرد کا حق ہے</span>؛ ہر دل کو حق جاننے کا حق ہے، چاہے اس کی زبان یا پس منظر کچھ بھی ہو۔\n\n"
-        + "ہم آپ کے راستے میں روشنی جلانے، آپ کو دانائی کی طرف لے جانے اور بھلائی کے دروازے کھولنے کے لیے یہاں ہیں۔\n\n"
-        + "<span class='bold'>Deenway</span>... جہاں دل ملتے ہیں، ذہن جڑتے ہیں اور ہر تلاش کرنے والا اپنی روشنی پاتا ہے۔"
+      ar: "مرحبًا بك في <span class='bold'>Deenway</span>. مشروعنا ليس مجرد منصة، بل هو <span class='bold'>رسالة أمل ونور</span> تعبر الحدود. نطمح أن نوصل الهداية لكل قلب يبحث عن الحق، بلغته وثقافته. نؤمن أن <span class='bold'>النور لا يُحجب بل يُهْدَى</span>، وأن لكل إنسان الحق في أن يعرف طريق الحق مهما اختلفت لغته أو خلفيته. نحن هنا لنُشْعِل شمعة في دربك، ونرافقك بخطى ثابتة نحو الحكمة والمعرفة، ونفتح لك أبواب الرحمة والخير. <span class='bold'>Deenway</span>... حيث تتلاقى القلوب، وتلتقي العقول، ويجد كل باحث عن النور سبيله.",
+      fr: "Bienvenue sur <span class='bold'>Deenway</span>. Notre projet est bien plus qu'une simple plateforme ; c'est un <span class='bold'>message d'espoir et de lumière</span> qui traverse les frontières. Nous croyons que <span class='bold'>la lumière doit être partagée</span> et que chaque cœur mérite d'être guidé, peu importe la langue ou la culture. Nous sommes là pour illuminer votre chemin, vous accompagner pas à pas vers la sagesse, ouvrir les portes de la miséricorde et du bien. <span class='bold'>Deenway</span>... là où les cœurs se rencontrent et où chacun peut trouver la voie de la lumière.",
+      en: "Welcome to <span class='bold'>Deenway</span>. Our project is more than just a platform—it's a <span class='bold'>message of hope and light</span> that transcends all boundaries. We believe that <span class='bold'>guidance is a universal right</span>; every heart deserves to know the truth, regardless of language or background. We're here to spark a candle on your path, walk with you towards wisdom, and open the doors of mercy and goodness. <span class='bold'>Deenway</span>... where hearts meet, minds connect, and every seeker finds their way to the light.",
+      es: "Bienvenido a <span class='bold'>Deenway</span>. Nuestro proyecto es mucho más que una plataforma, es un <span class='bold'>mensaje de esperanza y luz</span> que cruza fronteras. Creemos que <span class='bold'>la guía es un derecho universal</span>; cada corazón merece conocer la verdad, sin importar su idioma ni procedencia. Estamos aquí para alumbrar tu camino, acompañarte hacia la sabiduría y abrirte las puertas de la misericordia y el bien. <span class='bold'>Deenway</span>... donde los corazones se encuentran, las mentes se conectan y cada buscador encuentra su luz.",
+      de: "Willkommen bei <span class='bold'>Deenway</span>. Unser Projekt ist mehr als nur eine Plattform – es ist eine <span class='bold'>Botschaft von Hoffnung und Licht</span>, die keine Grenzen kennt. Wir glauben, dass <span class='bold'>Wahrheit für alle zugänglich</span> sein sollte; jedes Herz verdient Führung, unabhängig von Sprache oder Herkunft. Wir sind da, um ein Licht auf deinem Weg zu entzünden, dich auf dem Weg zur Weisheit zu begleiten und die Türen des Guten zu öffnen. <span class='bold'>Deenway</span>... wo Herzen sich begegnen und jeder Suchende seinen Weg zum Licht findet.",
+      tr: "<span class='bold'>Deenway</span>'e hoş geldiniz. Projemiz sadece bir platform değil, sınırları aşan bir <span class='bold'>umut ve ışık mesajıdır</span>. <span class='bold'>Rehberliğin evrensel bir hak</span> olduğuna inanıyoruz; her kalp ve akıl, dili veya kökeni ne olursa olsun, gerçeği bilmeye layıktır. Yolunuza bir mum yakmak, sizi hikmete götüren yolda eşlik etmek ve iyiliğin kapılarını açmak için buradayız. <span class='bold'>Deenway</span>... kalplerin buluştuğu, akılların birleştiği ve her arayışçının ışığa ulaştığı yer.",
+      id: "Selamat datang di <span class='bold'>Deenway</span>. Proyek kami bukan sekadar platform, melainkan <span class='bold'>pesan harapan dan cahaya</span> yang melintasi batasan apa pun. Kami yakin <span class='bold'>petunjuk adalah hak semua orang</span>; setiap hati berhak mengenal kebenaran tanpa memandang bahasa atau latar belakang. Kami ingin menyalakan lilin di jalan Anda, menemani Anda menuju kebijaksanaan, dan membuka pintu kebaikan dan rahmat. <span class='bold'>Deenway</span>... tempat hati bertemu, pikiran bersatu, dan setiap pencari menemukan cahaya.",
+      ur: "<span class='bold'>Deenway</span> میں خوش آمدید۔ ہمارا منصوبہ صرف ایک پلیٹ فارم نہیں بلکہ <span class='bold'>امید اور روشنی کا پیغام</span> ہے جو سرحدوں سے ماورا ہے۔ ہم یقین رکھتے ہیں کہ <span class='bold'>ہدایت ہر فرد کا حق ہے</span>؛ ہر دل کو حق جاننے کا حق ہے، چاہے اس کی زبان یا پس منظر کچھ بھی ہو۔ ہم آپ کے راستے میں روشنی جلانے، آپ کو دانائی کی طرف لے جانے اور بھلائی کے دروازے کھولنے کے لیے یہاں ہیں۔ <span class='bold'>Deenway</span>... جہاں دل ملتے ہیں، ذہن جڑتے ہیں اور ہر تلاش کرنے والا اپنی روشنی پاتا ہے۔"
     };
 
-    // عبارات "تصفح موقعك كما تحب" بثمان لغات
     const browsePhrases = {
       ar: "تصفح موقعك كما تحب",
       fr: "Parcourez votre site comme vous aimez",
@@ -294,8 +267,7 @@
     }
 
     function updateAbout(lang) {
-      // استخدم innerHTML لدعم النص الغليظ والسطر الجديد
-      aboutEl.innerHTML = (aboutTexts[lang] || aboutTexts['en']).replace(/\n/g, "<br>");
+      aboutEl.innerHTML = aboutTexts[lang] || aboutTexts['en'];
       if (lang === "ar" || lang === "ur") {
         aboutEl.classList.remove("ltr");
       } else {
@@ -325,14 +297,12 @@
     updateAbout(currentLang);
     updateBrowsePhrase(currentLang);
 
-    // التبديل التلقائي للعبارة والشعار
     let taglineIndex = langs.indexOf(currentLang);
     setInterval(() => {
       taglineIndex = (taglineIndex + 1) % langs.length;
       updateTagline(langs[taglineIndex]);
     }, 4000);
 
-    // التبديل التلقائي لعبارة "تصفح موقعك كما تحب"
     let browsePhraseIndex = langs.indexOf(currentLang);
     setInterval(() => {
       browsePhraseIndex = (browsePhraseIndex + 1) % langs.length;
