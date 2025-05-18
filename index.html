@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>Deenway – من نحن</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deenway</title>
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fff;
       color: #2c3e50;
-      padding: 40px 20px;
       line-height: 1.6;
-      min-height: 100vh;
-      margin: 0;
     }
 
-    .container {
-      max-width: 850px;
-      margin: 0 auto;
+    .center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      min-height: 100vh;
+      padding: 30px 20px 0;
     }
 
     .logo {
@@ -27,36 +34,66 @@
       background: linear-gradient(90deg, #1d3557, #457b9d);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 1px;
-      margin-bottom: 8px;
+      letter-spacing: 2px;
       user-select: none;
+      margin-bottom: 10px;
     }
 
     .tagline {
-      font-size: 15px;
+      font-size: 20px;
       font-style: italic;
       color: #7f8c8d;
       margin-bottom: 30px;
       letter-spacing: 0.6px;
+      transition: opacity 0.6s ease;
+      min-height: 28px;
     }
 
-    .desc {
-      font-size: 20px;
+    .desc, .about {
+      font-size: 22px;
       font-weight: 600;
-      margin-bottom: 40px;
+      max-width: 850px;
       transition: opacity 0.6s ease;
-      min-height: 120px;
+      margin-bottom: 40px;
     }
 
     .about {
       font-size: 18px;
-      background: #f9f9f9;
-      padding: 25px 30px;
+      background: #f0f4f8;
+      padding: 25px;
       border-radius: 12px;
-      margin-bottom: 45px;
       color: #34495e;
-      line-height: 1.8;
-      box-shadow: inset 0 0 12px rgba(0,0,0,0.03);
+      max-width: 800px;
+      font-weight: 500;
+    }
+
+    .ltr {
+      direction: ltr;
+      text-align: left;
+    }
+
+    .language-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .language-buttons button {
+      padding: 10px 20px;
+      border: 1px solid #2980b9;
+      background-color: #fff;
+      color: #2980b9;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .language-buttons button:hover {
+      background-color: #2980b9;
+      color: #fff;
     }
 
     .sections {
@@ -64,73 +101,113 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
+      margin-bottom: 50px;
     }
 
     .sections a {
-      padding: 12px 26px;
+      padding: 12px 25px;
       border: 2px solid #2980b9;
       border-radius: 25px;
       text-decoration: none;
       color: #2980b9;
       font-weight: 700;
-      font-size: 15px;
-      transition: all 0.3s ease;
+      font-size: 16px;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     .sections a:hover {
       background: #2980b9;
       color: #fff;
     }
+
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 36px;
+      }
+
+      .desc {
+        font-size: 18px;
+      }
+
+      .about {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">Deenway</div>
-    <div class="tagline">Guidance across languages</div>
-    <div class="desc" id="changing-text">
-      Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية.
+  <div class="center">
+    <div class="logo">DEENWAY</div>
+    <div class="tagline" id="changingTagline">Guidance across languages</div>
+
+    <div class="language-buttons">
+      <button onclick="showAbout('ar')">العربية</button>
+      <button onclick="showAbout('fr')">Français</button>
+      <button onclick="showAbout('en')">English</button>
+      <button onclick="showAbout('es')">Español</button>
+      <button onclick="showAbout('de')">Deutsch</button>
+      <button onclick="showAbout('tr')">Türkçe</button>
+      <button onclick="showAbout('id')">Bahasa</button>
+      <button onclick="showAbout('ur')">اردو</button>
     </div>
 
-    <div class="about">
-      Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية.
-      من أجل ذلك، نوفر محتوانا بلغات متعددة لنجعل النور متاحًا لكل من يبحث عنه، أيًا كانت لغته أو خلفيته.
-    </div>
+    <div class="about" id="aboutText"></div>
 
     <div class="sections">
-      <a href="https://offdeenway.org">الموقع الرئيسي</a>
-      <a href="https://library.offdeenway.org">المكتبة</a>
-      <a href="https://academy.offdeenway.org">الأكاديمية</a>
-      <a href="https://app.offdeenway.org">التطبيق</a>
+      <a href="#">العربية</a>
+      <a href="#">Français</a>
+      <a href="#">English</a>
+      <a href="#">Español</a>
+      <a href="#">Deutsch</a>
+      <a href="#">Türkçe</a>
+      <a href="#">Bahasa</a>
+      <a href="#">اردو</a>
     </div>
   </div>
 
   <script>
-    const texts = [
-      { text: "Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية.", dir: "rtl" },
-      { text: "Deenway is a dawah project aiming to deliver guidance in the language of hearts and minds, beyond borders and tongues.", dir: "ltr" },
-      { text: "Deenway est un projet visant à transmettre la lumière divine dans la langue des cœurs et des esprits, sans frontières.", dir: "ltr" },
-      { text: "Deenway es un proyecto de dawah que lleva la guía en el idioma del corazón y la razón, sin límites geográficos.", dir: "ltr" },
-      { text: "Deenway ist ein Daʿwa-Projekt, das Führung in der Sprache des Herzens und des Verstands vermittelt, grenzenlos.", dir: "ltr" },
-      { text: "Deenway, kalplere ve akıllara hitap eden bir dilde hidayeti ulaştırmayı amaçlayan bir davet projesidir.", dir: "ltr" },
-      { text: "Deenway adalah proyek dakwah yang menyampaikan petunjuk dalam bahasa hati dan akal, tanpa batas.", dir: "ltr" },
-      { text: "Deenway ایک دعوۃ کا منصوبہ ہے جو ہدایت کو دلوں اور عقلوں کی زبان میں پہنچاتا ہے، بغیر کسی سرحد کے۔", dir: "rtl" }
+    const taglines = [
+      "Guidance across languages",
+      "Guidance across cultures",
+      "Guidance across hearts",
+      "Guidance beyond borders"
     ];
 
-    let i = 0;
-    const desc = document.getElementById("changing-text");
+    const aboutTexts = {
+      ar: "Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية. من أجل ذلك، نوفر محتوانا بلغات متعددة لنجعل النور متاحًا لكل من يبحث عنه، أيًا كانت لغته أو خلفيته.",
+      fr: "Deenway est un projet de prêche visant à transmettre la guidance par le langage des cœurs et des esprits. Nous croyons que la lumière ne connaît ni frontières géographiques ni linguistiques.",
+      en: "Deenway is a da'wah project aiming to deliver guidance in the language of hearts and minds. We believe that guidance knows no geographical or linguistic boundaries.",
+      es: "Deenway es un proyecto de da‘wah cuyo objetivo es transmitir la guía en el idioma de los corazones y las mentes. Creemos que la guía no conoce fronteras geográficas ni lingüísticas.",
+      de: "Deenway ist ein Da'wah-Projekt, das darauf abzielt, die Führung in der Sprache der Herzen und des Verstandes zu vermitteln. Wir glauben, dass die Wahrheit keine Grenzen kennt.",
+      tr: "Deenway, kalplerin ve akılların diliyle rehberliği ulaştırmayı amaçlayan bir davet projesidir. Hidayetin coğrafi veya dilsel sınırları tanımadığına inanıyoruz.",
+      id: "Deenway adalah proyek dakwah yang bertujuan menyampaikan petunjuk dengan bahasa hati dan akal. Kami percaya bahwa hidayah tidak mengenal batas geografis maupun bahasa.",
+      ur: "Deenway ایک دعوتی منصوبہ ہے جو دلوں اور عقل کی زبان میں ہدایت پہنچانے کا عزم رکھتا ہے۔ ہم سمجھتے ہیں کہ ہدایت کی کوئی جغرافیائی یا لسانی سرحد نہیں۔"
+    };
 
-    function updateText() {
-      i = (i + 1) % texts.length;
-      desc.style.opacity = 0;
+    let tagIndex = 0;
+
+    function rotateTagline() {
+      const el = document.getElementById("changingTagline");
+      tagIndex = (tagIndex + 1) % taglines.length;
+      el.style.opacity = 0;
       setTimeout(() => {
-        desc.textContent = texts[i].text;
-        desc.dir = texts[i].dir;
-        desc.style.textAlign = texts[i].dir === "rtl" ? "right" : "left";
-        desc.style.opacity = 1;
+        el.textContent = taglines[tagIndex];
+        el.style.opacity = 1;
       }, 400);
     }
 
-    setInterval(updateText, 9000);
+    function showAbout(lang) {
+      const el = document.getElementById("aboutText");
+      el.textContent = aboutTexts[lang] || "";
+      if (lang === "ar" || lang === "ur") {
+        el.classList.remove("ltr");
+      } else {
+        el.classList.add("ltr");
+      }
+    }
+
+    setInterval(rotateTagline, 9000);
+    showAbout("ar"); // Default language
   </script>
 </body>
 </html>
