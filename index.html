@@ -1,93 +1,131 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #fff;
-  color: #2c3e50;
-  text-align: right;
-  padding: 40px 20px;
-  line-height: 1.6;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Deenway | من نحن</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff;
+      color: #333;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding-top: 30px;
+    }
+    .logo {
+      font-size: 42px;
+      font-weight: 900;
+      background: linear-gradient(to right, #0284c7, #1e3a8a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+    .tagline {
+      font-size: 15px;
+      color: #666;
+      margin-bottom: 25px;
+    }
+    .desc {
+      font-size: 18px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      min-height: 120px;
+    }
+    .about {
+      font-size: 17px;
+      color: #444;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+      min-height: 80px;
+    }
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .sections a {
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #333;
+      background: #f1f5f9;
+      transition: background 0.2s ease;
+    }
+    .sections a:hover {
+      background: #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">DEENWAY</div>
+    <div class="tagline">Guiding hearts to the truth</div>
 
-.container {
-  max-width: 850px;
-  width: 80%;
-  background: #ffffff;
-  padding: 40px 50px;
-  border-radius: 15px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-  text-align: right;
-  color: #34495e;
-  margin-top: 20px;
-}
+    <div class="desc" id="rotatingText"></div>
 
-.logo {
-  font-size: 48px;
-  font-weight: 900;
-  background: linear-gradient(90deg, #1d3557, #457b9d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  letter-spacing: 2px;
-  margin-bottom: 10px;
-  user-select: none;
-}
+    <div class="about" id="rotatingAbout"></div>
 
-.tagline {
-  font-size: 16px;
-  font-style: italic;
-  color: #7f8c8d;
-  margin-bottom: 35px;
-  letter-spacing: 0.6px;
-}
+    <div class="sections">
+      <a href="https://deenway.net/ar">العربية</a>
+      <a href="https://deenway.net/fr">Français</a>
+      <a href="https://deenway.net/en">English</a>
+      <a href="https://deenway.net/es">Español</a>
+      <a href="https://deenway.net/de">Deutsch</a>
+      <a href="https://deenway.net/tr">Türkçe</a>
+      <a href="https://deenway.net/id">Bahasa</a>
+      <a href="https://deenway.net/ur">اردو</a>
+    </div>
+  </div>
 
-.desc {
-  font-size: 20px;
-  line-height: 1.9;
-  min-height: 130px;
-  margin-bottom: 30px;
-  color: #2c3e50;
-  font-weight: 600;
-  transition: opacity 0.6s ease;
-}
+  <script>
+    const phrases = [
+      "موقع ديني هدفه الأسمى إيصال المعلومة كما ينبغي لها أن تصل، وتطبيق وصية المصطفى ﷺ: \"بلّغوا عني ولو آية\".",
+      "Un site religieux dont le but est de transmettre fidèlement le message de l'islam au monde.",
+      "A spiritual platform dedicated to sharing authentic Islamic knowledge across the globe.",
+      "Un sitio islámico para difundir la sabiduría profética a todos los pueblos.",
+      "Eine religiöse Plattform, um die Botschaft des Islam zugänglich zu machen.",
+      "İslami bilginin kalplere ulaşmasını amaçlayan bir davet platformudur.",
+      "Situs Islam untuk menyampaikan cahaya petunjuk ke seluruh dunia.",
+      "ایک ایسا اسلامی پلیٹ فارم جو علم کو ہر دل تک پہنچانا چاہتا ہے۔"
+    ];
 
-.about {
-  font-size: 17px;
-  background: #f4f7fa;
-  padding: 25px 30px;
-  border-radius: 12px;
-  margin-bottom: 45px;
-  color: #34495e;
-  min-height: 90px;
-  box-shadow: inset 0 0 15px rgba(0,0,0,0.03);
-  line-height: 1.6;
-  font-weight: 500;
-  transition: opacity 0.6s ease;
-}
+    const abouts = [
+      "Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية.<br>من أجل ذلك، نوفر محتوانا بلغات متعددة لنجعل النور متاحًا لكل من يبحث عنه، أيًا كانت لغته أو خلفيته.",
+      "Deenway est un projet de prédication visant à transmettre la guidance dans la langue des cœurs et des esprits. Nous croyons que la guidance ne connaît ni frontières géographiques ni linguistiques.<br>Pour cela, nous fournissons notre contenu en plusieurs langues afin de rendre la lumière accessible à tous, quelles que soient leur langue ou origine.",
+      "Deenway is a dawah project aiming to deliver guidance in the language of hearts and minds. We believe guidance knows no geographic or linguistic boundaries.<br>Therefore, we provide our content in multiple languages to make the light available to all seekers regardless of their language or background.",
+      "Deenway es un proyecto de dawah que tiene como objetivo transmitir la guía en el idioma de los corazones y las mentes. Creemos que la guía no conoce fronteras geográficas ni lingüísticas.<br>Por ello, ofrecemos nuestro contenido en varios idiomas para hacer la luz accesible a todos los que la buscan, sin importar su idioma o procedencia.",
+      "Deenway ist ein Dawah-Projekt, das darauf abzielt, Führung in der Sprache der Herzen und Köpfe zu vermitteln. Wir glauben, dass Führung keine geografischen oder sprachlichen Grenzen kennt.<br>Daher bieten wir unsere Inhalte in mehreren Sprachen an, um das Licht allen Suchenden zugänglich zu machen, unabhängig von ihrer Sprache oder Herkunft.",
+      "Deenway, kalplerin ve zihinlerin dilinde rehberlik sunmayı amaçlayan bir davet projesidir. Rehberliğin coğrafi veya dilsel sınırları olmadığını düşünüyoruz.<br>Bu nedenle, ışığı tüm arayanlara ulaştırmak için içeriğimizi birden çok dilde sunuyoruz.",
+      "Deenway adalah proyek dakwah yang bertujuan menyampaikan petunjuk dalam bahasa hati dan pikiran. Kami percaya petunjuk tidak mengenal batas geografis atau bahasa.<br>Oleh karena itu, kami menyediakan konten dalam berbagai bahasa untuk membuat cahaya tersedia bagi semua pencari tanpa memandang bahasa atau latar belakang mereka.",
+      "Deenway ایک تبلیغی منصوبہ ہے جو دلوں اور ذہنوں کی زبان میں رہنمائی فراہم کرنے کا ہدف رکھتا ہے۔ ہم یقین رکھتے ہیں کہ رہنمائی جغرافیائی یا لسانی حدیں نہیں جانتی۔<br>اسی لیے ہم اپنے مواد کو متعدد زبانوں میں فراہم کرتے ہیں تاکہ روشنی ہر تلاش کرنے والے تک پہنچ سکے، چاہے ان کی زبان یا پس منظر کچھ بھی ہو۔"
+    ];
 
-.sections {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
-}
+    let index = 0;
+    const rotatingTextEl = document.getElementById("rotatingText");
+    const rotatingAboutEl = document.getElementById("rotatingAbout");
 
-.sections a {
-  padding: 12px 28px;
-  border: 2px solid #2980b9;
-  border-radius: 25px;
-  text-decoration: none;
-  color: #2980b9;
-  font-weight: 700;
-  font-size: 16px;
-  box-shadow: 0 4px 10px rgba(41, 128, 185, 0.2);
-  transition: background 0.3s ease, color 0.3s ease;
-  user-select: none;
-}
+    function rotateContent() {
+      rotatingTextEl.textContent = phrases[index];
+      rotatingAboutEl.innerHTML = abouts[index];
+      index = (index + 1) % phrases.length;
+    }
 
-.sections a:hover {
-  background: #2980b9;
-  color: #fff;
-  box-shadow: 0 6px 20px rgba(41, 128, 185, 0.5);
-}
+    rotateContent(); // عرض أول عبارة فوراً
+    setInterval(rotateContent, 5000); // كل 5 ثواني تتغير
+  </script>
+</body>
+</html>
