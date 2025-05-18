@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Deenway</title>
   <style>
     * {
@@ -47,6 +47,7 @@
       letter-spacing: 0.6px;
       transition: opacity 0.6s ease;
       min-height: 28px;
+      max-width: 90vw;
     }
 
     .about {
@@ -60,6 +61,7 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       transition: all 0.4s ease;
       margin-bottom: 40px;
+      min-height: 120px;
     }
 
     .ltr {
@@ -69,25 +71,45 @@
 
     .language-select {
       margin-bottom: 25px;
+      position: relative;
+      width: 220px;
     }
 
-    .language-select select {
-      padding: 10px 20px;
+    /* تصميم حديث لزر الاختيار */
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 100%;
+      padding: 12px 50px 12px 20px;
       font-size: 16px;
       font-weight: 600;
       border: none;
       border-radius: 30px;
       background-color: #2980b9;
-      color: #fff;
-      appearance: none;
+      color: white;
       cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       outline: none;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      transition: background 0.3s ease;
+      transition: background-color 0.3s ease;
     }
 
-    .language-select select:hover {
+    select:hover, select:focus {
       background-color: #1d6fa5;
+    }
+
+    /* سهم مخصص */
+    .language-select::after {
+      content: "▼";
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      color: white;
+      pointer-events: none;
+      font-size: 14px;
+      font-weight: 700;
+      user-select: none;
     }
 
     .sections {
@@ -126,6 +148,11 @@
       .about {
         font-size: 16px;
       }
+
+      .language-select {
+        width: 100%;
+        max-width: 300px;
+      }
     }
   </style>
 </head>
@@ -138,7 +165,7 @@
       <select id="languageDropdown" onchange="changeLanguage(this.value)">
         <option value="ar">العربية</option>
         <option value="fr">Français</option>
-        <option value="en">English</option>
+        <option value="en" selected>English</option>
         <option value="es">Español</option>
         <option value="de">Deutsch</option>
         <option value="tr">Türkçe</option>
@@ -162,12 +189,16 @@
   </div>
 
   <script>
-    const taglines = [
-      "Guiding hearts to the truth",
-      "Reaching minds through faith",
-      "One message, many languages",
-      "Light for every soul"
-    ];
+    const taglines = {
+      ar: "تهدي القلوب إلى الحق",
+      fr: "Guider les cœurs vers la vérité",
+      en: "Guiding hearts to the truth",
+      es: "Guiando corazones hacia la verdad",
+      de: "Die Herzen zur Wahrheit führen",
+      tr: "Kalpleri gerçeğe yönlendirmek",
+      id: "Membimbing hati menuju kebenaran",
+      ur: "دلوں کی رہنمائی حق کی طرف"
+    };
 
     const aboutTexts = {
       ar: "Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية. من أجل ذلك، نوفر محتوانا بلغات متعددة لنجعل النور متاحًا لكل من يبحث عنه، أيًا كانت لغته أو خلفيته.",
@@ -180,32 +211,54 @@
       ur: "Deenway ایک دعوتی منصوبہ ہے جو دلوں اور عقل کی زبان میں ہدایت پہنچانے کا عزم رکھتا ہے۔ ہم سمجھتے ہیں کہ ہدایت کی کوئی جغرافیائی یا لسانی سرحد نہیں۔"
     };
 
-    let taglineIndex = 0;
+    let langs = Object.keys(taglines);
 
-    function rotateTagline() {
-      const el = document.getElementById("changingTagline");
-      taglineIndex = (taglineIndex + 1) % taglines.length;
-      el.style.opacity = 0;
+    // العناصر
+    const taglineEl = document.getElementById("changingTagline");
+    const aboutEl = document.getElementById("aboutText");
+    const languageDropdown = document.getElementById("languageDropdown");
+
+    // ابدأ بتحميل اللغة الافتراضية (حسب اختيار المستخدم أو الانجليزي)
+    let currentLang = languageDropdown.value || 'en';
+
+    function updateContent(lang) {
+      // تغيير نص التاجلاين
+      taglineEl.style.opacity = 0;
       setTimeout(() => {
-        el.textContent = taglines[taglineIndex];
-        el.style.opacity = 1;
+        taglineEl.textContent = taglines[lang] || taglines['en'];
+        taglineEl.style.opacity = 1;
       }, 400);
-    }
 
-    function changeLanguage(lang) {
-      const el = document.getElementById("aboutText");
-      el.textContent = aboutTexts[lang] || "";
+      // تغيير النص الوصفي
+      aboutEl.textContent = aboutTexts[lang] || aboutTexts['en'];
 
+      // تعديل اتجاه النص
       if (lang === "ar" || lang === "ur") {
-        el.classList.remove("ltr");
+        aboutEl.classList.remove("ltr");
       } else {
-        el.classList.add("ltr");
+        aboutEl.classList.add("ltr");
       }
+
+      // ضبط قيمة Dropdown لتتوافق مع اللغة الحالية
+      languageDropdown.value = lang;
     }
 
-    // بداية التشغيل
-    setInterval(rotateTagline, 4000);
-    changeLanguage("ar"); // اللغة الافتراضية
+    // التبديل التلقائي بين اللغات للعبارة فقط كل 4 ثواني
+    let taglineIndex = langs.indexOf(currentLang);
+    setInterval(() => {
+      taglineIndex = (taglineIndex + 1) % langs.length;
+      updateContent(langs[taglineIndex]);
+    }, 4000);
+
+    // عند تغيير اللغة من Dropdown
+    function changeLanguage(lang) {
+      currentLang = lang;
+      taglineIndex = langs.indexOf(lang);
+      updateContent(lang);
+    }
+
+    // تهيئة المحتوى عند التحميل
+    updateContent(currentLang);
   </script>
 </body>
 </html>
