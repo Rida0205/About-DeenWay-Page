@@ -49,14 +49,6 @@
       min-height: 28px;
     }
 
-    .desc, .about {
-      font-size: 22px;
-      font-weight: 600;
-      max-width: 850px;
-      transition: opacity 0.6s ease;
-      margin-bottom: 40px;
-    }
-
     .about {
       font-size: 18px;
       background: #f0f4f8;
@@ -65,6 +57,8 @@
       color: #34495e;
       max-width: 800px;
       font-weight: 500;
+      transition: all 0.4s ease;
+      margin-bottom: 40px;
     }
 
     .ltr {
@@ -72,26 +66,26 @@
       text-align: left;
     }
 
-    .language-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
+    .language-select {
       margin-bottom: 25px;
+      position: relative;
     }
 
-    .language-buttons button {
-      padding: 10px 20px;
-      border: 1px solid #2980b9;
+    .language-select select {
+      padding: 10px 15px;
+      font-size: 16px;
+      font-weight: bold;
+      border: 2px solid #2980b9;
+      border-radius: 25px;
       background-color: #fff;
       color: #2980b9;
-      border-radius: 20px;
-      font-weight: bold;
+      appearance: none;
       cursor: pointer;
+      outline: none;
       transition: 0.3s;
     }
 
-    .language-buttons button:hover {
+    .language-select select:hover {
       background-color: #2980b9;
       color: #fff;
     }
@@ -125,7 +119,7 @@
         font-size: 36px;
       }
 
-      .desc {
+      .tagline {
         font-size: 18px;
       }
 
@@ -140,15 +134,17 @@
     <div class="logo">DEENWAY</div>
     <div class="tagline" id="changingTagline">Guidance across languages</div>
 
-    <div class="language-buttons">
-      <button onclick="showAbout('ar')">العربية</button>
-      <button onclick="showAbout('fr')">Français</button>
-      <button onclick="showAbout('en')">English</button>
-      <button onclick="showAbout('es')">Español</button>
-      <button onclick="showAbout('de')">Deutsch</button>
-      <button onclick="showAbout('tr')">Türkçe</button>
-      <button onclick="showAbout('id')">Bahasa</button>
-      <button onclick="showAbout('ur')">اردو</button>
+    <div class="language-select">
+      <select id="languageDropdown" onchange="changeLanguage(this.value)">
+        <option value="ar">العربية</option>
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+        <option value="es">Español</option>
+        <option value="de">Deutsch</option>
+        <option value="tr">Türkçe</option>
+        <option value="id">Bahasa</option>
+        <option value="ur">اردو</option>
+      </select>
     </div>
 
     <div class="about" id="aboutText"></div>
@@ -184,21 +180,22 @@
       ur: "Deenway ایک دعوتی منصوبہ ہے جو دلوں اور عقل کی زبان میں ہدایت پہنچانے کا عزم رکھتا ہے۔ ہم سمجھتے ہیں کہ ہدایت کی کوئی جغرافیائی یا لسانی سرحد نہیں۔"
     };
 
-    let tagIndex = 0;
+    let taglineIndex = 0;
 
     function rotateTagline() {
       const el = document.getElementById("changingTagline");
-      tagIndex = (tagIndex + 1) % taglines.length;
+      taglineIndex = (taglineIndex + 1) % taglines.length;
       el.style.opacity = 0;
       setTimeout(() => {
-        el.textContent = taglines[tagIndex];
+        el.textContent = taglines[taglineIndex];
         el.style.opacity = 1;
       }, 400);
     }
 
-    function showAbout(lang) {
+    function changeLanguage(lang) {
       const el = document.getElementById("aboutText");
       el.textContent = aboutTexts[lang] || "";
+
       if (lang === "ar" || lang === "ur") {
         el.classList.remove("ltr");
       } else {
@@ -206,8 +203,9 @@
       }
     }
 
+    // تشغيل مبدئي
     setInterval(rotateTagline, 9000);
-    showAbout("ar"); // Default language
+    changeLanguage("ar"); // اللغة الابتدائية
   </script>
 </body>
 </html>
