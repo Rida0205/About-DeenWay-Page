@@ -13,104 +13,108 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background: #fff;
       color: #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 40px 20px;
       text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding-top: 30px;
     }
     .logo {
-      font-size: 40px;
+      font-size: 42px;
       font-weight: 900;
       background: linear-gradient(to right, #0284c7, #1e3a8a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
     }
     .tagline {
       font-size: 15px;
       color: #666;
-      margin-bottom: 30px;
-    }
-    .lang-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 30px;
-    }
-    .lang-buttons button {
-      padding: 8px 16px;
-      font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      background: #f9f9f9;
-      cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    .lang-buttons button:hover {
-      background: #e2e8f0;
+      margin-bottom: 25px;
     }
     .desc {
-      max-width: 800px;
       font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 30px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      min-height: 100px;
     }
     .about {
       font-size: 17px;
       color: #444;
-      border-top: 1px solid #eee;
-      padding-top: 20px;
-      max-width: 700px;
+      background: #f8fafc;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+    .sections {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .sections a {
+      padding: 10px 20px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #333;
+      background: #f1f5f9;
+      transition: background 0.2s ease;
+    }
+    .sections a:hover {
+      background: #e2e8f0;
     }
   </style>
 </head>
 <body>
-  <div class="logo">DEENWAY</div>
-  <div class="tagline">Guiding hearts to the truth</div>
+  <div class="container">
+    <div class="logo">DEENWAY</div>
+    <div class="tagline">Guiding hearts to the truth</div>
 
-  <div class="lang-buttons">
-    <button onclick="setLang('ar')">العربية</button>
-    <button onclick="setLang('fr')">Français</button>
-    <button onclick="setLang('en')">English</button>
-    <button onclick="setLang('es')">Español</button>
-    <button onclick="setLang('de')">Deutsch</button>
-    <button onclick="setLang('tr')">Türkçe</button>
-    <button onclick="setLang('id')">Bahasa</button>
-    <button onclick="setLang('ur')">اردو</button>
-  </div>
+    <div class="desc" id="rotatingText"></div>
 
-  <div class="desc" id="siteDescription"></div>
+    <div class="about">
+      Deenway هو مشروع دعوي يهدف إلى إيصال الهداية بلُغَة القلوب والعقول، حيث نؤمن أن الهُدى لا يعرف حدودًا جغرافية ولا لغوية.<br>
+      من أجل ذلك، نوفر محتوانا بلغات متعددة لنجعل النور متاحًا لكل من يبحث عنه، أيًا كانت لغته أو خلفيته.
+    </div>
 
-  <div class="about">
-    موقع ديني هدفه الأسمى إيصال المعلومة كما ينبغي لها أن تصل، وتطبيق وصية المصطفى ﷺ: "بلّغوا عني ولو آية". <br>
-    نحن نعمل لنشر الخير، وتعليم الناس دينهم بطريقة سهلة وأصيلة، مستمدين طريقنا من هدي النبي ﷺ.
+    <div class="sections">
+      <a href="https://deenway.net/ar">العربية</a>
+      <a href="https://deenway.net/fr">Français</a>
+      <a href="https://deenway.net/en">English</a>
+      <a href="https://deenway.net/es">Español</a>
+      <a href="https://deenway.net/de">Deutsch</a>
+      <a href="https://deenway.net/tr">Türkçe</a>
+      <a href="https://deenway.net/id">Bahasa</a>
+      <a href="https://deenway.net/ur">اردو</a>
+    </div>
   </div>
 
   <script>
-    const messages = {
-      ar: "موقع ديني هدفه الأسمى إيصال المعلومة كما ينبغي لها أن تصل، وتطبيق وصية المصطفى ﷺ: \\\"بلّغوا عني ولو آية\\\". نسعى للخير، وندل عليه.",
-      fr: "Un site religieux dont le but suprême est de transmettre l'information comme elle doit l'être, en appliquant la recommandation du Prophète ﷺ : \\\"Transmettez de moi ne serait-ce qu’un verset.\\\" Nous recherchons le bien et y guidons.",
-      en: "A religious website whose ultimate goal is to deliver knowledge as it should be, applying the command of the Prophet ﷺ: \\\"Convey from me even one verse.\\\" We strive for goodness and guide to it.",
-      es: "Un sitio religioso cuyo objetivo supremo es transmitir el conocimiento como debe ser, aplicando la enseñanza del Profeta ﷺ: \\\"Transmitid de mí aunque sea un verso.\\\" Buscamos el bien y guiamos hacia él.",
-      de: "Eine religiöse Website mit dem höchsten Ziel, Wissen so zu vermitteln, wie es sein soll, gemäß dem Rat des Propheten ﷺ: \\\"Übermittelt von mir auch nur einen Vers.\\\" Wir streben nach dem Guten und zeigen den Weg dorthin.",
-      tr: "Bilginin doğru şekilde iletilmesini amaçlayan dini bir siteyiz. Peygamber Efendimiz ﷺ’in emrini uyguluyoruz: \\\"Benden bir ayet bile olsa iletin.\\\" Hayra ulaşmak ve ulaştırmak için çabalıyoruz.",
-      id: "Situs keagamaan yang bertujuan menyampaikan ilmu sebagaimana mestinya, menerapkan wasiat Nabi ﷺ: \\\"Sampaikan dariku walau hanya satu ayat.\\\" Kami berupaya untuk kebaikan dan membimbing ke arahnya.",
-      ur: "ایک دینی ویب سائٹ جس کا اعلیٰ مقصد علم کو ویسے ہی پہنچانا ہے جیسے پہنچنا چاہیے، اور نبی ﷺ کی وصیت پر عمل کرنا: \\\"میری طرف سے ایک آیت بھی پہنچاؤ۔\\\" ہم بھلائی کی کوشش کرتے ہیں اور اس کی طرف رہنمائی کرتے ہیں۔"
-    };
+    const phrases = [
+      "موقع ديني هدفه الأسمى إيصال المعلومة كما ينبغي لها أن تصل، وتطبيق وصية المصطفى ﷺ: \"بلّغوا عني ولو آية\".",
+      "Un site religieux dont le but est de transmettre fidèlement le message de l'islam au monde.",
+      "A spiritual platform dedicated to sharing authentic Islamic knowledge across the globe.",
+      "Un sitio islámico para difundir la sabiduría profética a todos los pueblos.",
+      "Eine religiöse Plattform, um die Botschaft des Islam zugänglich zu machen.",
+      "İslami bilginin kalplere ulaşmasını amaçlayan bir davet platformudur.",
+      "Situs Islam untuk menyampaikan cahaya petunjuk ke seluruh dunia.",
+      "ایک ایسا اسلامی پلیٹ فارم جو علم کو ہر دل تک پہنچانا چاہتا ہے۔"
+    ];
 
-    function setLang(lang) {
-      const rtlLangs = ["ar", "ur"];
-      document.documentElement.lang = lang;
-      document.documentElement.dir = rtlLangs.includes(lang) ? "rtl" : "ltr";
-      document.getElementById("siteDescription").textContent = messages[lang];
+    let index = 0;
+    const el = document.getElementById("rotatingText");
+
+    function rotateText() {
+      el.textContent = phrases[index];
+      index = (index + 1) % phrases.length;
     }
 
-    setLang('ar');
+    rotateText(); // عرض أول عبارة فورًا
+    setInterval(rotateText, 5000); // كل 5 ثوانٍ
   </script>
 </body>
 </html>
