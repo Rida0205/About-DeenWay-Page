@@ -7,6 +7,18 @@
   <!-- Favicon -->
   <link rel="icon" type="image/webp" href="https://cdn-icons-png.flaticon.com/512/1705/1705004.png">
   <style>
+    :root {
+      --primary: #1d3557;
+      --secondary: #457b9d;
+      --accent: #e63946;
+      --light: #f1faee;
+      --text: #2c3e50;
+      --text-light: #7f8c8d;
+      --white: #ffffff;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --transition: all 0.4s ease;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -15,9 +27,13 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9fbfc;
-      color: #2c3e50;
+      background: linear-gradient(135deg, #f9fbfc 0%, #e8f4f8 100%);
+      color: var(--text);
       line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .center {
@@ -26,61 +42,145 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      min-height: 100vh;
-      padding: 30px 20px 0;
+      min-height: 90vh;
+      padding: 40px 20px;
+      position: relative;
+      flex: 1;
+    }
+
+    /* تصميم الشعار المحسن */
+    .logo-container {
+      position: relative;
+      margin-bottom: 20px;
     }
 
     .logo {
-      font-size: 48px;
+      font-size: 64px;
       font-weight: 900;
-      background: linear-gradient(90deg, #1d3557, #457b9d);
+      background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       user-select: none;
-      margin-bottom: 10px;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      z-index: 2;
+      transition: var(--transition);
     }
 
+    .logo:hover {
+      transform: scale(1.05);
+      text-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .logo-decoration {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(29, 53, 87, 0.1) 0%, rgba(255,255,255,0) 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    /* تصميم العبارة الثابتة */
     .tagline {
-      font-size: 20px;
-      font-style: italic;
-      color: #7f8c8d;
-      margin-bottom: 30px;
-      letter-spacing: 0.6px;
-      transition: opacity 0.6s ease;
-      min-height: 28px;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+      min-height: 32px;
       max-width: 90vw;
+      position: relative;
+      padding: 12px 25px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     }
 
+    /* تصميم مربع النص المحسن */
     .about {
       font-size: 18px;
-      background: #ffffff;
-      padding: 25px;
-      border-radius: 16px;
-      color: #34495e;
+      background: var(--white);
+      padding: 35px;
+      border-radius: 20px;
+      color: var(--text);
       max-width: 800px;
       font-weight: 500;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-      transition: all 0.4s ease;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
       margin-bottom: 40px;
-      min-height: 180px;
+      min-height: 200px;
       white-space: pre-line;
       text-align: inherit;
+      position: relative;
+      border-left: 5px solid var(--accent);
+      line-height: 1.8;
+    }
+
+    .about::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 25px;
+      z-index: -1;
+      opacity: 0.1;
     }
 
     .bold {
       font-weight: bold;
-      color: #1d3557;
+      color: var(--primary);
+      position: relative;
     }
 
+    .bold::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0.5;
+    }
+
+    /* تصميم عبارة التصفح */
     .browse-anyway {
-      font-size: 19px;
-      margin-bottom: 15px;
-      color: #2980b9;
+      font-size: 20px;
+      margin-bottom: 25px;
+      color: var(--secondary);
       font-weight: 700;
-      min-height: 29px;
-      transition: opacity 0.6s ease;
+      min-height: 32px;
+      transition: var(--transition);
       letter-spacing: 0.3px;
+      padding: 12px 25px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .browse-anyway::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transition: left 0.7s ease;
+    }
+
+    .browse-anyway:hover::before {
+      left: 100%;
     }
 
     .ltr {
@@ -88,10 +188,12 @@
       text-align: left;
     }
 
+    /* تصميم قائمة اللغات المحسن */
     .language-select {
-      margin-bottom: 25px;
+      margin-bottom: 35px;
       position: relative;
-      width: 220px;
+      width: 280px;
+      z-index: 10;
     }
 
     select {
@@ -99,21 +201,33 @@
       -moz-appearance: none;
       appearance: none;
       width: 100%;
-      padding: 12px 50px 12px 20px;
-      font-size: 16px;
+      padding: 14px 50px 14px 20px;
+      font-size: 17px;
       font-weight: 600;
       border: none;
       border-radius: 30px;
-      background-color: #2980b9;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
       outline: none;
-      transition: background-color 0.3s ease;
+      transition: var(--transition);
+      z-index: 11;
+      position: relative;
+    }
+
+    /* إصلاح مشكلة عرض الخيارات */
+    select option {
+      background: white;
+      color: var(--text);
+      font-size: 16px;
+      padding: 12px 20px;
+      direction: ltr;
     }
 
     select:hover, select:focus {
-      background-color: #1d6fa5;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
     .language-select::after {
@@ -127,54 +241,158 @@
       font-size: 14px;
       font-weight: 700;
       user-select: none;
+      transition: var(--transition);
+      z-index: 12;
     }
 
+    .language-select:hover::after {
+      transform: translateY(-50%) scale(1.2);
+    }
+
+    /* تصميم روابط الأقسام المحسن */
     .sections {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 15px;
-      margin-bottom: 50px;
+      margin-bottom: 40px;
+      max-width: 800px;
     }
 
     .sections a {
-      padding: 12px 25px;
-      border: 2px solid #2980b9;
-      border-radius: 25px;
+      padding: 14px 28px;
+      border: 2px solid var(--secondary);
+      border-radius: 30px;
       text-decoration: none;
-      color: #2980b9;
+      color: var(--secondary);
       font-weight: 700;
       font-size: 16px;
-      transition: background 0.3s ease, color 0.3s ease;
-      min-width: 110px;
+      transition: var(--transition);
+      min-width: 120px;
       text-align: center;
       box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .sections a::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      transition: var(--transition);
+      z-index: -1;
     }
 
     .sections a:hover {
-      background: #2980b9;
-      color: #fff;
+      color: var(--white);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
 
-    @media (max-width: 600px) {
+    .sections a:hover::before {
+      width: 100%;
+    }
+
+    /* تصميم الفوتر */
+    footer {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .footer-links a::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: var(--transition);
+      transform: translateX(-50%);
+    }
+
+    .footer-links a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .footer-links a:hover::after {
+      width: 80%;
+    }
+
+    /* تأثيرات الخلفية */
+    .bg-decoration {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(69, 123, 157, 0.1) 0%, rgba(255,255,255,0) 70%);
+      z-index: -1;
+    }
+
+    .bg-decoration:nth-child(1) {
+      top: 10%;
+      left: 5%;
+    }
+
+    .bg-decoration:nth-child(2) {
+      bottom: 10%;
+      right: 5%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(230, 57, 70, 0.1) 0%, rgba(255,255,255,0) 70%);
+    }
+
+    /* تصميم متجاوب للهواتف */
+    @media (max-width: 768px) {
       .logo {
-        font-size: 36px;
+        font-size: 48px;
       }
 
       .tagline {
-        font-size: 18px;
+        font-size: 20px;
+        padding: 10px 20px;
       }
 
       .about {
         font-size: 16px;
+        padding: 25px;
       }
 
       .language-select {
         width: 100%;
-        max-width: 300px;
+        max-width: 280px;
       }
+      
       .browse-anyway {
-        font-size: 17px;
+        font-size: 18px;
+        padding: 10px 20px;
       }
 
       .sections {
@@ -183,40 +401,78 @@
         gap: 12px;
         margin-bottom: 40px;
         width: 100%;
-        max-width: 370px;
+        max-width: 400px;
       }
+      
       .sections a {
         min-width: unset;
         padding: 12px 0;
         font-size: 15px;
-        border-radius: 18px;
+        border-radius: 20px;
+      }
+
+      .footer-links {
+        gap: 15px;
+      }
+
+      .footer-links a {
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+
+      .bg-decoration {
+        display: none;
+      }
+    }
+
+    /* تأثيرات الظهور */
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   </style>
 </head>
 <body>
+  <div class="bg-decoration"></div>
+  <div class="bg-decoration"></div>
+  
   <div class="center">
-    <div class="logo">DEENWAY</div>
-    <div class="tagline" id="changingTagline">Guiding hearts to the truth</div>
+    <div class="logo-container">
+      <div class="logo-decoration"></div>
+      <div class="logo fade-in">About DEENWAY</div>
+    </div>
+    
+    <!-- العبارة الثابتة التي لا تتغير -->
+    <div class="tagline fade-in">One truth — eight languages</div>
 
-    <div class="language-select">
+    <div class="language-select fade-in">
       <select id="languageDropdown" onchange="changeLanguage(this.value)">
         <option value="ar" selected>العربية</option>
         <option value="fr">Français</option>
-        <option value="en" >English</option>
+        <option value="en">English</option>
         <option value="es">Español</option>
         <option value="de">Deutsch</option>
         <option value="tr">Türkçe</option>
-        <option value="id">Bahasa</option>
+        <option value="id">Bahasa Indonesia</option>
         <option value="ur">اردو</option>
       </select>
     </div>
 
-    <div class="about" id="aboutText"></div>
+    <div class="about fade-in" id="aboutText"></div>
 
-    <div class="browse-anyway" id="browsePhrase"></div>
+    <div class="browse-anyway fade-in" id="browsePhrase"></div>
 
-    <div class="sections">
+    <div class="sections fade-in">
       <a href="https://www.ondeenway.org/">العربية</a>
       <a href="https://fr.ondeenway.org/">Français</a>
       <a href="https://en.ondeenway.org/">English</a>
@@ -228,18 +484,14 @@
     </div>
   </div>
 
-  <script>
-    const taglines = {
-      ar: "تهدي القلوب إلى الحق",
-      fr: "Guider les cœurs vers la vérité",
-      en: "Guiding hearts to the truth",
-      es: "Guiando corazones hacia la verdad",
-      de: "Die Herzen zur Wahrheit führen",
-      tr: "Kalpleri gerçeğe yönlendirmek",
-      id: "Membimbing hati menuju kebenaran",
-      ur: "دلوں کی رہنمائی حق کی طرف"
-    };
+  <!-- الفوتر مع الروابط التي تتغير مع اللغة -->
+  <footer>
+    <div class="footer-links" id="footerLinks">
+      <!-- سيتم ملء هذه الروابط ديناميكياً بناءً على اللغة المختارة -->
+    </div>
+  </footer>
 
+  <script>
     // وصف مطول ومؤثر مع عبارات غليظة وفواصل أسطر
     const aboutTexts = {
       ar: "مرحبًا بك في <span class='bold'>Deenway</span>.\n\n"
@@ -296,26 +548,70 @@
       ur: "اپنی ویب سائٹ کو اپنی مرضی سے دریافت کریں"
     };
 
-    let langs = Object.keys(taglines);
+    // روابط الفوتر بجميع اللغات
+    const footerLinks = {
+      ar: [
+        { text: "الموقع الرسمي", url: "https://www.ondeenway.org/" },
+        { text: "الأسئلة الشائعة", url: "https://faq.ondeenway.org/" },
+        { text: "مكتبة DEENWAY", url: "https://ebook.ondeenway.org/" },
+        { text: "اتصل بنا", url: "https://contact.ondeenway.org/" }
+      ],
+      fr: [
+        { text: "Site Officiel", url: "https://www.ondeenway.org/" },
+        { text: "FAQ", url: "https://faq.ondeenway.org/" },
+        { text: "Bibliothèque DEENWAY", url: "https://ebook.ondeenway.org/" },
+        { text: "Contactez-nous", url: "https://contact.ondeenway.org/" }
+      ],
+      en: [
+        { text: "Official Website", url: "https://www.ondeenway.org/" },
+        { text: "FAQ", url: "https://faq.ondeenway.org/" },
+        { text: "DEENWAY Library", url: "https://ebook.ondeenway.org/" },
+        { text: "Contact Us", url: "https://contact.ondeenway.org/" }
+      ],
+      es: [
+        { text: "Sitio Oficial", url: "https://www.ondeenway.org/" },
+        { text: "Preguntas Frecuentes", url: "https://faq.ondeenway.org/" },
+        { text: "Biblioteca DEENWAY", url: "https://ebook.ondeenway.org/" },
+        { text: "Contáctenos", url: "https://contact.ondeenway.org/" }
+      ],
+      de: [
+        { text: "Offizielle Website", url: "https://www.ondeenway.org/" },
+        { text: "FAQ", url: "https://faq.ondeenway.org/" },
+        { text: "DEENWAY Bibliothek", url: "https://ebook.ondeenway.org/" },
+        { text: "Kontaktieren Sie uns", url: "https://contact.ondeenway.org/" }
+      ],
+      tr: [
+        { text: "Resmi Web Sitesi", url: "https://www.ondeenway.org/" },
+        { text: "SSS", url: "https://faq.ondeenway.org/" },
+        { text: "DEENWAY Kütüphanesi", url: "https://ebook.ondeenway.org/" },
+        { text: "Bize Ulaşın", url: "https://contact.ondeenway.org/" }
+      ],
+      id: [
+        { text: "Situs Resmi", url: "https://www.ondeenway.org/" },
+        { text: "FAQ", url: "https://faq.ondeenway.org/" },
+        { text: "Perpustakaan DEENWAY", url: "https://ebook.ondeenway.org/" },
+        { text: "Hubungi Kami", url: "https://contact.ondeenway.org/" }
+      ],
+      ur: [
+        { text: "سرکاری ویب سائٹ", url: "https://www.ondeenway.org/" },
+        { text: "عمومی سوالات", url: "https://faq.ondeenway.org/" },
+        { text: "DEENWAY لائبریری", url: "https://ebook.ondeenway.org/" },
+        { text: "ہم سے رابطہ کریں", url: "https://contact.ondeenway.org/" }
+      ]
+    };
 
-    const taglineEl = document.getElementById("changingTagline");
+    let langs = Object.keys(aboutTexts);
+
     const aboutEl = document.getElementById("aboutText");
     const languageDropdown = document.getElementById("languageDropdown");
     const browsePhraseEl = document.getElementById("browsePhrase");
+    const footerLinksEl = document.getElementById("footerLinks");
 
-    let currentLang = languageDropdown.value || 'en';
-
-    function updateTagline(lang) {
-      taglineEl.style.opacity = 0;
-      setTimeout(() => {
-        taglineEl.textContent = taglines[lang] || taglines['en'];
-        taglineEl.style.opacity = 1;
-      }, 400);
-    }
+    let currentLang = languageDropdown.value || 'ar';
 
     function updateAbout(lang) {
       // استخدم innerHTML لدعم النص الغليظ والسطر الجديد
-      aboutEl.innerHTML = (aboutTexts[lang] || aboutTexts['en']).replace(/\n/g, "<br>");
+      aboutEl.innerHTML = (aboutTexts[lang] || aboutTexts['ar']).replace(/\n/g, "<br>");
       if (lang === "ar" || lang === "ur") {
         aboutEl.classList.remove("ltr");
       } else {
@@ -326,31 +622,36 @@
     function updateBrowsePhrase(lang) {
       browsePhraseEl.style.opacity = 0;
       setTimeout(() => {
-        browsePhraseEl.textContent = browsePhrases[lang] || browsePhrases['en'];
+        browsePhraseEl.textContent = browsePhrases[lang] || browsePhrases['ar'];
         browsePhraseEl.style.opacity = 1;
       }, 400);
+    }
+
+    function updateFooterLinks(lang) {
+      const links = footerLinks[lang] || footerLinks['ar'];
+      footerLinksEl.innerHTML = '';
+      
+      links.forEach(link => {
+        const a = document.createElement('a');
+        a.href = link.url;
+        a.textContent = link.text;
+        a.target = "_blank";
+        footerLinksEl.appendChild(a);
+      });
     }
 
     function changeLanguage(lang) {
       currentLang = lang;
       languageDropdown.value = lang;
       updateAbout(lang);
-      taglineIndex = langs.indexOf(lang);
-      browsePhraseIndex = langs.indexOf(lang);
-      updateTagline(lang);
       updateBrowsePhrase(lang);
+      updateFooterLinks(lang);
     }
 
     // البداية
     updateAbout(currentLang);
     updateBrowsePhrase(currentLang);
-
-    // التبديل التلقائي للعبارة والشعار
-    let taglineIndex = langs.indexOf(currentLang);
-    setInterval(() => {
-      taglineIndex = (taglineIndex + 1) % langs.length;
-      updateTagline(langs[taglineIndex]);
-    }, 4000);
+    updateFooterLinks(currentLang);
 
     // التبديل التلقائي لعبارة "تصفح موقعك كما تحب"
     let browsePhraseIndex = langs.indexOf(currentLang);
